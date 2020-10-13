@@ -35,6 +35,10 @@ export class MainServicesService {
 
   // baseUrl = 'http://162.222.32.20:1451/v1/'
   //   172.16.1.117
+
+  
+  
+
   typeLogin: string;
 
 
@@ -96,6 +100,9 @@ export class MainServicesService {
 
     this.toastr.error(msg)
   }
+
+
+  
   // sendMessage(msg1: string) {
   //   this.addPromo.next({ text: msg1 });
   //   console.log('service===>>>', msg1)
