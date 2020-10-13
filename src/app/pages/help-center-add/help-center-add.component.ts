@@ -52,6 +52,10 @@ export class HelpCenterAddComponent implements OnInit {
     this.service.toastErr('Something Went Wrong')
   })
 }
- 
+AlphabetOnly(event){
+  let pattAlpha = /^([a-zA-Z ])*$/;
+  let resultAlpha = pattAlpha.test(event.key);
+  return resultAlpha;
+} 
 }
 

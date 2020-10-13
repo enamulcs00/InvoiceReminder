@@ -31,7 +31,7 @@
                                   <!-- <div class="">
                                       <input type="text" class="form-control"> -->
                                       <div class="col-md-14">
-                                        <input type="text" class="form-control" placeholder="Name"  [formControl]="addForm.controls['name']" maxlength="256"
+                                        <input type="text" class="form-control" placeholder="Name" (keypress)="AlphabetOnly($event)" [formControl]="addForm.controls['name']" maxlength="256"
                                             minlength="2" />
                                         <!-- <div class="error-block" *ngIf="addForm.controls['name'].dirty && addForm.controls['name'].invalid">
                                             <span style='color:red' [ngClass]="{error:addForm.controls['name'].hasError('required')}" *ngIf="addForm.controls['name'].hasError('required')">*Please enter name</span>
