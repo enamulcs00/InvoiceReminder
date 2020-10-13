@@ -1,0 +1,66 @@
+<div class="wrapper">
+  <header class="header">
+      <nav class="navbar clearfix">
+          <div class="logo-box">
+              <a class="navbar-brand logo" routerLink="/dashboard">
+                  <img src="../assets/img/logo-blue.png" alt="logo" class="lg-logo">
+                  <!-- <img src="img/sm-logo.png" alt="logo" class="sm-logo"> -->
+              </a>
+          </div>
+          <div class="header-right-part">
+              <button class="btn btn-toggle" type="button">
+                          <i class="fas fa-bars"></i>
+                      </button>
+              <button class="btn btn-outline-secondary btn-mobsearch" type="button"><i class="fas fa-search"></i></button>
+          </div>
+          <div class="nav-right-box">
+                <!-- routerLink="/login" -->
+              <a   class="btn btn-sm btn-blue" (click)="logoutModal()" >Logout</a>
+          </div>
+      </nav>
+  </header>
+<!-- 
+  <div class="modal fade global-modal reset-modal" id="logout_modal">
+    <div class="modal-dialog max-WT-450">
+        <div class="modal-content">
+            <div>
+                <div class="modal-body  text-center">
+                    <div class="row align-items-center modal_flax_height">
+                        <div class="col">
+                            <div class="box-title mb30 d-inline-block">
+                                <i class="fas fa-power-off off-icon"></i>
+                                <p class="mt40">Are you sure you want to logout?</p>
+                            </div>
+                            <div class="text-center">
+                                <a (click) = "logoutFunc()" class="btn btn-blue btn-noYes">YES</a>
+                                <button type="button" class="btn btn-red btn-noYes" data-dismiss="modal">CANCEL</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+ -->
+
+ <div class="modal fade" id="exampleModal" tabindex="-1" id="logout_modal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog" role="document" >
+          <div class="modal-content" style="border-radius: 21px;">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" style="text-align: center; ">
+              <h5 style="   font-size: 1.25rem;font-size: 20px;font-weight: 300;color: #808080f7;">Are you sure you want to logout?</h5>
+            </div>
+            <div class="modal-footer" style="display: flex;justify-content: space-around;">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" style="    background-color: red;width: 23%;border-radius: 23px;"
+              >Close</button>
+              <button type="button" class="btn btn-primary" routerLink="/login" (click)="logout()" style="    background-color: blue;width: 23%;border-radius: 23px;">Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>

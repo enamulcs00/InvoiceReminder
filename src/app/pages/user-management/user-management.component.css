@@ -1,0 +1,20 @@
+.select1{
+    margin-left: 9%;
+    width: 14%;
+    height: 38px;
+    border-radius: 22px;
+}
+select.form-control {
+    /* background-image: url(assets/img/dropicon.png); */
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px) 50%;
+    background-size: 13px auto;
+    border-color: #ccc;
+    padding-right: 20px;
+    box-shadow: none;
+    font-size: 14px;
+    color: #717171;
+    /* width: 19%; */
+    margin-left: 80%!important;
+    border-radius: 18px!important;
+}

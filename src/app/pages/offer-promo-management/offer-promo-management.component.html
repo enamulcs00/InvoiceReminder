@@ -1,0 +1,398 @@
+<app-side-menu></app-side-menu>
+<app-header-bar></app-header-bar>
+<main class="middle-content">
+    <div class="content-section">
+        <div class="page_title_block">
+            <h1 class="page_title">Offer & Promotion Management</h1>
+        </div>
+        <div class="custom_tabs">
+            <ul class="nav nav-tabs  text-center border-bottom-0 mb-4 mt-2">
+                <li class="nav-item">
+                    <a class="nav-link" [ngClass]="activeTab == 'offers' ? 'active' : ''" href="javascript:;"
+                        (click)="switchTab('offers')">Offers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [ngClass]="activeTab == 'promotions' ? 'active' : ''" href="javascript:;"
+                        (click)="switchTab('promotions')">Promotions</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="offers" *ngIf="activeTab == 'offers'">
+                    <div class="search-block d-flex align-items-center mb20 mt20">
+                        <div class="d-flex align-items-center justify-content-between w-100">
+                            <label class="pr-4 font16 mb-0">Offer List :</label>
+                            <div class="filter_search d-block mr-0">
+                                <div class="input-group filter_search_group">
+                                    <input type="text" class="form-control" name="searchkey"
+                                        (keyup)="searchByData($event.target.value)"
+                                        placeholder="Search by Offer Tagline/Offer Code">
+                                    <div class="input-group-append">
+                                        <button class="btn btn_search_group" type="button"><img
+                                                src="assets/img/icon-search.png" alt="Search"></button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <!-- <div class="filter_search mw-100  w-auto d-block mr-0">
+                                  <div class="input-group filter_search_group">
+                                      <input type="text" class="form-control" placeholder="Search User">
+                                      <div class="input-group-append">
+                                          <button class="btn btn_search_group" type="button"><img src="../assets/img/icon-search.png" alt="Search"></button>
+                                      </div>
+                                  </div>
+                              </div> -->
+                            <img src="assets/img/import_icon.png" alt=""
+                                style="height: 30px; width: 30px;cursor: pointer;" (click)="exportAsXLSX()">Export
+                            <div class="ml-auto">
+                                <a routerLink="/add-offers" class="link font17"><i class="fas fa-plus-circle mr-1"></i>
+                                    Add Offers</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="global-table no-radius p0">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-edit">
+                                <thead>
+                                    <tr class="no_wrap_th">
+                                        <th>S.No.</th>
+                                        <th>Offer Tagline</th>
+                                        <th>Offer Code</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th class="action_td_btn3">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- <tr *ngFor="let items of offerlistdata">
+                                          <td>1</td>
+                                          <td>{{items?.offerTagLine}}</td>
+                                          <td>{{items?.offerCode}}</td>
+                                          <td>{{items?.startDate}}</td>
+                                          <td>{{items?.endDate}}</td>
+                                          <td class="action_td_btn3">
+                                              <a routerLink="/view-offers"> <i class="fa fa-eye"></i></a>
+                                              <a routerLink="/edit-offers"><i class="fa fa-edit"></i></a>
+                                              <a href="#delete" data-toggle="modal"> <i class="fa fa-trash"></i></a>
+                                          </td>
+                                      </tr> -->
+                                    <!-- <tr *ngFor="let items of getofferdata; let i=index"> -->
+                                    <tr
+                                        *ngFor="let items of getofferdata | paginate :{itemsPerPage:limit , currentPage:page, totalItems: totalPage, id:'userResult'};index as i">
+                                        <td>{{limit * (page - 1)+i+1}}</td>
+                                        <!-- <td><img [src]="items?.image" style="width:130px;"></td> -->
+
+                                        <td>{{items?.offerTagLine}}</td>
+                                        <td>{{items?.offerCode}}</td>
+                                        <td>{{items?.startDate | date:'yyyy-MM-dd'  }}</td>
+                                        <td>{{items?.endDate  | date:'yyyy-MM-dd'  }}</td>
+                                        <td class="action_td_btn3">
+                                            <a (click)="view(items)"> <i class="fa fa-eye"></i></a>
+                                            <a (click)="editoffer(items?._id)"><i class="fa fa-edit"></i></a>
+                                            <a (click)="deleteUserFunc(items._id)" data-backdrop="static"
+                                                data-toggle="modal" class="view-icon" style="cursor:pointer"> <i
+                                                    class="fa fa-trash"></i></a>
+                                            <!-- <button type="button" (click)="delete()" class="btn btn-info" data-dismiss="modal">Delete</button> -->
+                                        </td>
+                                    </tr>
+                                    <!-- <tr *ngIf="user == '' ">
+                                            <span><img src="assets/img/datanot.jpg"></span>
+                                        </tr> -->
+                                    <!-- <tr>
+                                          <td>1</td>
+                                          <td>Buy 1 get 1 free</td>
+                                          <td>#we4rdF</td>
+                                          <td>22/05/2018</td>
+                                          <td>22/06/2018</td>
+                                          <td class="action_td_btn3">
+                                              <a routerLink="/view-offers"> <i class="fa fa-eye"></i></a>
+                                              <a routerLink="/edit-offers"><i class="fa fa-edit"></i></a>
+                                              <a href="#delete" data-toggle="modal"> <i class="fa fa-trash"></i></a>
+                                          </td>
+                                      </tr> -->
+                                    <!-- <tr>
+                                          <td>1</td>
+                                          <td>Buy 1 get 1 free</td>
+                                          <td>#we4rdF</td>
+                                          <td>22/05/2018</td>
+                                          <td>22/06/2018</td>
+                                          <td class="action_td_btn3">
+                                              <a routerLink="/view-offers"> <i class="fa fa-eye"></i></a>
+                                              <a routerLink="/edit-offers"><i class="fa fa-edit"></i></a>
+                                              <a href="#delete" data-toggle="modal"> <i class="fa fa-trash"></i></a>
+                                          </td>
+                                      </tr> -->
+                                    <!-- <tr>
+                                          <td>1</td>
+                                          <td>Buy 1 get 1 free</td>
+                                          <td>#we4rdF</td>
+                                          <td>22/05/2018</td>
+                                          <td>22/06/2018</td>
+                                          <td class="action_td_btn3">
+                                              <a routerLink="/view-offers"> <i class="fa fa-eye"></i></a>
+                                              <a routerLink="/edit-offers"><i class="fa fa-edit"></i></a>
+                                              <a href="#delete" data-toggle="modal"> <i class="fa fa-trash"></i></a>
+                                          </td>
+                                      </tr> -->
+                                    <!-- <tr>
+                                          <td>1</td>
+                                          <td>Buy 1 get 1 free</td>
+                                          <td>#we4rdF</td>
+                                          <td>22/05/2018</td>
+                                          <td>22/06/2018</td>
+                                          <td class="action_td_btn3">
+                                              <a routerLink="/view-offers"> <i class="fa fa-eye"></i></a>
+                                              <a routerLink="/edit-offers"><i class="fa fa-edit"></i></a>
+                                              <a href="#delete" data-toggle="modal"> <i class="fa fa-trash"></i></a>
+                                          </td>
+                                      </tr> -->
+                                    <!-- <tr>
+                                          <td>1</td>
+                                          <td>Buy 1 get 1 free</td>
+                                          <td>#we4rdF</td>
+                                          <td>22/05/2018</td>
+                                          <td>22/06/2018</td>
+                                          <td class="action_td_btn3">
+                                              <a routerLink="/view-offers"> <i class="fa fa-eye"></i></a>
+                                              <a routerLink="/edit-offers"><i class="fa fa-edit"></i></a>
+                                              <a href="#delete" data-toggle="modal"> <i class="fa fa-trash"></i></a>
+                                          </td>
+                                      </tr> -->
+                                    <!-- <tr>
+                                          <td>1</td>
+                                          <td>Buy 1 get 1 free</td>
+                                          <td>#we4rdF</td>
+                                          <td>22/05/2018</td>
+                                          <td>22/06/2018</td>
+                                          <td class="action_td_btn3">
+                                              <a routerLink="/view-offers"> <i class="fa fa-eye"></i></a>
+                                              <a routerLink="/edit-offers"><i class="fa fa-edit"></i></a>
+                                              <a href="#delete" data-toggle="modal"> <i class="fa fa-trash"></i></a>
+                                          </td>
+                                      </tr> -->
+
+
+                                </tbody>
+                                <!-- <pagination-controls  (pageChange)="paginationControl($event)" id="userResult"></pagination-controls> -->
+
+                            </table>
+                        </div>
+                        <div class="custom-pagination mt30 text-center">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <!-- <div *ngFor="let item of paginationData | paginate: { itemsPerPage:paginationData?.limit, currentPage: paginationData?.pages ,totalItems:paginationData?.total};let i = index">
+                                            </div>
+                                           <pagination-controls (pageChange)="addPromotion($event)" *ngIf="paginationData?.length != 0"></pagination-controls> -->
+                                    <div>
+                                        <pagination-controls (pageChange)="paginationControl($event)" id="userResult">
+                                        </pagination-controls>
+
+                                    </div>
+                                    <!-- <li class="page-item">
+                                          <a class="page-link" href="#" aria-label="Previous">
+                                              <span aria-hidden="true">«</span>
+                                              <span class="sr-only">Previous</span>
+                                          </a>
+                                      </li>
+                                      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                      <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                      <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                      <li class="page-item">
+                                          <a class="page-link" href="#" aria-label="Next">
+                                              <span aria-hidden="true">»</span>
+                                              <span class="sr-only">Next</span>
+                                          </a>
+                                      </li> -->
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane active" id="promotions" *ngIf="activeTab == 'promotions'">
+                    <div class="search-block d-flex align-items-center mb20 mt20">
+                        <div class="d-flex align-items-center justify-content-between w-100">
+                            <!-- <label class="pr-4 font16 mb-0">Promotions List :</label>
+                              <div class="filter_search d-block mr-0">
+                                    <div class="input-group filter_search_group">
+                                        <input type="text" class="form-control"  [(ngModel)]="searchkey" name="searchkey"  (keyup)="search(1)" placeholder="Search by date" >
+                                        <div class="input-group-append">
+                                            <button class="btn btn_search_group" type="button"><img src="assets/img/icon-search.png" alt="Search"></button>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            <div class="form-group row max-WT-500">
+                                <div class="col-sm-6">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <label class="d-block max-WT-60 mb-0">From :</label>
+                                        <div class="">
+                                            <input type="date" class="form-control " name="formdate"
+                                                [(ngModel)]="calender.formdate" (change)="formdate()"
+                                                placeholder="xx-xx-xxxx">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <label class="d-block max-WT-50 mb-0">To :</label>
+                                        <div class="">
+                                            <input type="date" class="form-control " name="todate"
+                                                [(ngModel)]="calender.todate" (change)="todate()"
+                                                placeholder="xx-xx-xxxx">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-green ml-2" (click)="searchFilter()">
+                                Search
+                            </button>
+                            <!-- <div class="filter_search mw-100  w-auto d-block mr-0">
+                                  <div class="input-group filter_search_group">
+                                      <input type="text" class="form-control" placeholder="Search User">
+                                      <div class="input-group-append">
+                                          <button class="btn btn_search_group" type="button"><img src="../assets/img/icon-search.png" alt="Search"></button>
+                                      </div>
+                                  </div>
+                              </div> -->
+                            <div class="ml-auto">
+                                <a routerLink="/add-promotions" class="link font17"><i
+                                        class="fas fa-plus-circle mr-1"></i> Add</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="global-table no-radius p0">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-edit">
+                                <thead>
+                                    <tr class="no_wrap_th">
+                                        <th>S.No.</th>
+                                        <th>Image</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th class="action_td_btn3">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- <tr *ngFor="let items of user?.result | paginate :{itemsPerPage:user?.paginationData?.limit , currentPage:user?.paginationData?.page, totalItems: user?.paginationData?.total};index as i"> -->
+                                    <tr
+                                        *ngFor="let items of getofferdata | paginate :{itemsPerPage:paginationData?.limit , currentPage:paginationData?.page, totalItems:paginationData?.total, id:'promotionResult'}; index as i">
+                                        <td>{{limit * (page - 1)+i+1}}</td>
+                                        <td><img [src]="items?.image[0]" style="width:130px;"></td>
+                                        <td>{{items?.startDate| date:'yyyy-MM-dd' }}</td>
+                                        <td>{{items?.endDate | date:'yyyy-MM-dd' }}</td>
+                                        <td class="action_td_btn3">
+                                            <a (click)='view1(items._id)'> <i class="fa fa-eye"></i></a>
+                                            <a (click)="editPromotion(items?._id)"><i class="fa fa-edit"></i></a>
+                                            <a (click)="deletePromotion(items._id)" data-backdrop="static"
+                                                data-toggle="modal" class="view-icon" style="cursor:pointer"> <i
+                                                    class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="custom-pagination mt30 text-center">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <div>
+                                        <pagination-controls (pageChange)="paginationControl($event)"
+                                            id="promotionResult"></pagination-controls>
+                                    </div>
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <!-- Table Responsive End -->
+
+
+</main>
+
+
+<!-- signout_modal Start -->
+<div class="modal fade global-modal reset-modal" id="logout_modal">
+    <div class="modal-dialog max-WT-450">
+        <div class="modal-content">
+            <div>
+                <!-- Modal body -->
+                <div class="modal-body  text-center">
+                    <div class="row align-items-center modal_flax_height">
+                        <div class="col">
+                            <div class="box-title mb30 d-inline-block">
+                                <i class="fas fa-power-off off-icon"></i>
+                                <p class="mt40">Are you sure you want to logout?</p>
+                            </div>
+                            <div class="text-center">
+                                <a routerLink="/login" class="btn btn-blue btn-noYes">YES</a>
+                                <button type="button" class="btn btn-red btn-noYes" data-dismiss="modal">CANCEL</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Signout Modal END-->
+
+<!-- delete_modal Start -->
+<div class="modal fade global-modal reset-modal" id="delete">
+    <div class="modal-dialog max-WT-450">
+        <form class="change_password">
+            <div class="modal-content">
+                <div class="inner_border_area">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <div class="modal-body">
+                        <div class="text-center modal_flax_height d-flex align-items-center justify-content-center">
+                            <div class="w-100">
+                                <p>Are you sure want to delete this offer?</p>
+                                <div class="btn-group">
+                                    <button type="button" (click)="deleteUser()" class="btn btn-info"
+                                        data-dismiss="modal">Submit</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade global-modal reset-modal" id="promotion">
+    <div class="modal-dialog max-WT-450">
+        <form class="change_password">
+            <div class="modal-content">
+                <div class="inner_border_area">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <div class="modal-body">
+                        <div class="text-center modal_flax_height d-flex align-items-center justify-content-center">
+                            <div class="w-100">
+                                <p>Are you sure want to delete this offer?</p>
+                                <div class="btn-group">
+                                    <button type="button" (click)="deleterPromotionUser()" class="btn btn-info"
+                                        data-dismiss="modal">Submit</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- delete_modal End -->
