@@ -78,6 +78,9 @@ ngOnInit() {
     "contact": this.addForm.value.contact,
     "serviceCenterLocation": this.addForm.value.serviceCenterLocation,
     "description": this.addForm.value.description,
+    "lat":3.834017,
+    "long": 43.610297,
+    "state":"bihar"
   }
   console.log("hello", this.addForm.value, "in req data", addData)
 
