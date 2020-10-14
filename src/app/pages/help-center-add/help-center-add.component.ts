@@ -29,7 +29,7 @@ ngOnInit() {
   helpCenterForm() {
     this.addForm = this.formBuilder.group({
       name: ['', [Validators.required]],
-      category: ['', Validators.required],
+      category: ['Mobile'],
       serviceCenterLocation:['', Validators.compose([Validators.required])],
       contact: ['', [Validators.required,Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s./0-9]*$')]],
       description: ['', [Validators.required,Validators.maxLength(160)]]
