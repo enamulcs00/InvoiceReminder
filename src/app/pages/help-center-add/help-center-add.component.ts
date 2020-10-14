@@ -10,7 +10,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class HelpCenterAddComponent implements OnInit {
   addForm: FormGroup
-  
+  categoriesList: any = [];
 
   constructor(public router: Router, public service: MainServicesService,private formBuilder: FormBuilder) {
     // this.addForm = new FormGroup({
@@ -23,6 +23,7 @@ export class HelpCenterAddComponent implements OnInit {
    }
 ngOnInit() {
   this.helpCenterForm()
+  this.getAllCtegories()
   }
 
   helpCenterForm() {
@@ -82,10 +83,10 @@ ngOnInit() {
     "long": 43.610297,
     "state":"bihar"
   }
-  console.log("hello", this.addForm.value, "in req data", addData)
+  //console.log("hello", this.addForm.value, "in req data", addData)
 
   this.service.postApi('service/addHelpCenter', addData, 1).subscribe(response => {
-    console.log("in success>>>>>", response)
+    //console.log("in success>>>>>", response)
     if (response['responseCode'] == 200) {
       this.service.showSuccess('Help Center Added Successfully')
       this.router.navigate(['help-center-management'])
@@ -107,6 +108,13 @@ NumOnly(event){
   let resultNum = numericValue.test(event.key);
   return resultNum;
 }
-
+getAllCtegories(){
+  let channel = "category/listOfCategory"
+  this.service.getApi(channel,1).subscribe((res:any)=>{
+    console.log('Response of Cat',res.result)
+    this.categoriesList = res.result;
+    
+  })
+}
 }
 
