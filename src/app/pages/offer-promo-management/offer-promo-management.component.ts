@@ -149,13 +149,13 @@ export class OfferPromoManagementComponent implements OnInit {
 
   formdate() {
 
-    this.fromDate = new Date(this.calender.formdate)
-    this.fromDate = this.fromDate.toISOString().slice(0, 10)
+    // this.fromDate = new Date(this.calender.formdate)
+    // this.fromDate = this.fromDate.toISOString().slice(0, 10)
 
   }
-  todate() {
-    this.twoDate = new Date(this.calender.todate)
-    this.twoDate = this.twoDate.toISOString().slice(0, 10)
+   todate() {
+  //   this.twoDate = new Date(this.calender.todate)
+  //   this.twoDate = this.twoDate.toISOString().slice(0, 10)
   }
   // *************************Pagination********************************
 
