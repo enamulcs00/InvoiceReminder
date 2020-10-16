@@ -42,8 +42,8 @@ export class AddOffersComponent implements OnInit {
   nowDate2: any;
   todayDate: Date;
   toMaxDate: Date;
-  generetedCode:string = '';
-  IsDisable:boolean = false;
+  generetedCode:any;
+  
   constructor(private service: MainServicesService, private router:Router,private fb:FormBuilder) {
   
    }
@@ -169,10 +169,11 @@ export class AddOffersComponent implements OnInit {
                 }
 
                  GenerateCode() {
-                  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                  for (var i = 0; i < 8; i++)
-                  this.generetedCode += possible.charAt(Math.floor(Math.random() * possible.length));
-                  this.IsDisable = true;
+                   let code = '';
+                  let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                  for (var i = 0; i < 6; i++)
+                  code += possible.charAt(Math.floor(Math.random() * possible.length));
+                  this.generetedCode = code;
                 }
                 
                 
