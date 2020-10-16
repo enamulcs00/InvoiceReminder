@@ -42,6 +42,7 @@ import { countryList } from "./pages/countrylist";
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { EditPromotionComponent } from './edit-promotion/edit-promotion.component';
 import { PromotionEditComponent } from './promotion-edit/promotion-edit.component';
+import { TutorialEditComponent } from './pages/tutorial-edit/tutorial-edit.component';
 
 
 // import {Debounce} from 'angular2-debounce';
@@ -82,6 +83,7 @@ import { PromotionEditComponent } from './promotion-edit/promotion-edit.componen
     ResetPasswordComponent,
     EditPromotionComponent,
     PromotionEditComponent,
+    TutorialEditComponent,
 
     
    

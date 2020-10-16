@@ -67,6 +67,8 @@ type:any;
       console.log('Something went wrong');
     })
   }
-
+  tutorialEdit(){
+    this.router.navigate(['tutorial-edit'])
+  }
   
 }
