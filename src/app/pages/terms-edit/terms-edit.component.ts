@@ -12,7 +12,7 @@ export class TermsEditComponent implements OnInit {
   termsAndConditionForm:FormGroup;
   Id: any;
   successData: any;
-  description={term:'',privacy:''}
+//description={term:'',privacy:''}
   termDescription: any;
   constructor(public router: Router, public service: MainServicesService) {
     this.termsAndConditionForm=new FormGroup({
