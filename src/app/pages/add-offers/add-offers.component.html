@@ -21,7 +21,6 @@
                                     *ngFor="let data of urls">
 
                                     <img src={{data}} style="max-width:200px;height:130px;margin:5px;">
-                                    <!--  <img src="../assets/img/dummy.png" style="max-width:200px;height:130px;margin:5px;"> -->
 
                                 </div>
                             </div>
@@ -34,24 +33,29 @@
                             <div
                                 *ngIf="offerForm.get('offerTagline').errors && offerForm.get('offerTagline').touched || offerForm.get('offerTagline').dirty">
                                 <div *ngIf="offerForm.controls['offerTagline'].hasError('required')"><span
-                                        style="color:red">Offer taGline is required</span></div>
+                                        style="color:red">Offer tagline is required</span></div>
                                 <div *ngIf="offerForm.controls['offerTagline'].hasError('maxlength')"><span
                                         style="color:red">Offer tagline must be maxLength 20</span></div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="d-block pb-2">Offer Code :</label>
-                            <button  class="btn btn-blue" (click)="GenerateCode()">generate code</button> <hr>
-                            <div class="max-WT-200">
-                                <input type="text"  maxlength="6" class="form-control" formControlName="password" [(ngModel)]="generetedCode" placeholder="Your code is Here" readonly>
+                            <div style="display: flex; justify-content: space-between;">
+                                <label class="d-block pb-2">Offer Code :</label>
+                                <a (click)="generateCode()"
+                                    style="cursor: pointer;cursor: pointer; color: dodgerblue; text-decoration: underline;">Generate
+                                    code</a>
+                            </div>
 
+                            <div class="max-WT-200">
+                                <input type="text" size="10" class="form-control" formControlName="password" required>
+                                <!-- <input type="text" id="name" name="name" required minlength="4" maxlength="5" size="10"> -->
                             </div>
                             <div
                                 *ngIf="offerForm.get('password').errors && offerForm.get('password').touched || offerForm.get('offerTagline').dirty">
                                 <div *ngIf="offerForm.controls['password'].hasError('required')"><span
-                                        style="color:red">*Click on generate Code.</span></div>
+                                        style="color:red">Offer Code is required</span></div>
                                 <div *ngIf="offerForm.controls['password'].hasError('maxlength')"><span
-                                        style="color:red">Offer Code must be maxLength 6</span></div>
+                                        style="color:red">Offer Code must be maxLength 16</span></div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -59,7 +63,7 @@
                                 <label class="d-block pb-2">Start Date :</label>
                                 <div class="">
                                     <input type="date" class="form-control " name="formdate" id="datepicker"
-                                    formControlName="startDate" (change)="formdate()" placeholder="xx-xx-xxx" max="{{todayDate | date:'yyyy-MM-dd'}}"     
+                                        formControlName="startDate" (change)="formdate()" placeholder="xx-xx-xxx"
                                         (ngModelChange)="changed($event)" min="{{todayDate | date:'yyyy-MM-dd'}}">
                                 </div>
                             </div>

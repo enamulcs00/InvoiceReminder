@@ -4,7 +4,7 @@ import { MainServicesService } from 'src/app/main-services.service';
 import { ngxCsv } from 'ngx-csv/ngx-csv';
 
 declare var $: any;
-declare var kendo:any
+declare var kendo: any
 @Component({
   selector: 'app-help-center-management',
   templateUrl: './help-center-management.component.html',
@@ -19,23 +19,26 @@ export class HelpCenterManagementComponent implements OnInit {
   deleteId: any;
   status: string;
   helpCenterId: any;
-  options = { 
+  options = {
     fieldSeparator: ',',
     quoteStrings: '"',
     decimalseparator: '.',
-    showLabels: true, 
+    showLabels: true,
     showTitle: true,
     title: 'Your title',
     useBom: true,
     noDownload: false,
-    headers: ["Sr.No", "Category", "Name","Contact","Location"]
+    headers: ["Sr.No", "Category", "Name", "Contact", "Location"]
   };
- arr:any=[]
+  arr: any = []
+  userType: any;
   constructor(public router: Router, public service: MainServicesService) { }
 
   ngOnInit() {
     this.search(this.pageNo)
     // this.check();
+    this.userType = JSON.parse(localStorage.getItem('type'))
+
   }
 
 
@@ -127,28 +130,28 @@ export class HelpCenterManagementComponent implements OnInit {
   //       })
   //     .then(function (group) {
   //       kendo.drawing.pdf.saveAs(group, "Exported.pdf")
-     
+
   //     });
   // }
 
-  check(){
+  check() {
     let postData = {
-      search:'',
+      search: '',
     }
     var data = {}
     this.service.postApi(`service/getHelpCenterDetails`, postData, 1).subscribe(response => {
       // console.log("to check userlist", JSON.stringify(response))
       if (response['responseCode'] == 200) {
         var user = response['result'];
-        for(var i=0;i<user.length;i++){
+        for (var i = 0; i < user.length; i++) {
           data = {
-            'Sr.No': i+1,
-            'Category' :user[i].category,
+            'Sr.No': i + 1,
+            'Category': user[i].category,
             'Name': user[i].name,
-            'Contact':user[i].contact,
-            'Location':user[i].serviceCenterLocation
+            'Contact': user[i].contact,
+            'Location': user[i].serviceCenterLocation
           }
-        this.arr.push(data);
+          this.arr.push(data);
         }
         // this.getCSV()
         console.log("this.arr>>>>", this.arr)
@@ -160,11 +163,11 @@ export class HelpCenterManagementComponent implements OnInit {
       // this.service.toastErr('Something Went Wrong')
     })
     // new ngxCsv(arr, 'My file',this.options);
- }
+  }
 
- getCSV(){
+  getCSV() {
 
-  new ngxCsv(this.arr, 'My file',this.options);
- }
+    new ngxCsv(this.arr, 'My file', this.options);
+  }
 
 }
