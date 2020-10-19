@@ -169,16 +169,7 @@ export class AddOffersComponent implements OnInit {
                 }
                 }
 
-                 GenerateCode() {
-                   let code = '';
-                  let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                  for (var i = 0; i < 6; i++)
-                  code += possible.charAt(Math.floor(Math.random() * possible.length));
-                  this.generetedCode = code;
-                }
-                
-     //------------------API for Code Generation-------------------
-     
+     //------------------GenerateCode--------------------------    
      generateCode() {
       this.service.getApi('service/generateCode', 1).subscribe((res: any) => {
         console.log('response', res.result)
