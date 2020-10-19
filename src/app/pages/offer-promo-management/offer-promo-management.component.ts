@@ -27,7 +27,9 @@ export class OfferPromoManagementComponent implements OnInit {
   message: any;
   newData: any = [];
   p: number = 1;
+
   paginationData: any = {};
+
   calender: any = { todate: '', formdate: '' }
   fromDate: any;
   twoDate: any;
@@ -40,8 +42,6 @@ export class OfferPromoManagementComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userType = JSON.parse(localStorage.getItem('type'))
-
     this.switchTab(this.activeTab)
 
 
@@ -243,7 +243,6 @@ export class OfferPromoManagementComponent implements OnInit {
 
   //export User
   exportAsXLSX() {
-
     let dataArr = [];
     this.getofferdata.forEach((element, ind) => {
       dataArr.push({
@@ -252,7 +251,8 @@ export class OfferPromoManagementComponent implements OnInit {
         "Offer Code": element.offerCode,
       })
     })
-    this.service.exportAsExcelFile(dataArr, 'Offer Management');
+
+    this.service.exportAsExcelFile(dataArr, 'Offer&Promotion Management');
   }
 
 

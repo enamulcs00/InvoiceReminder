@@ -1,140 +1,134 @@
-<app-side-menu></app-side-menu>
+
+<app-side-menu ></app-side-menu>
 <app-header-bar></app-header-bar>
-<main class="middle-content">
+  <main class="middle-content">
 
 
-    <div class="content-section">
-        <div class="page_title_block">
-            <h1 class="page_title">Help Center Management</h1>
-        </div>
+      <div class="content-section">
+          <div class="page_title_block">
+              <h1 class="page_title">Help Center Management</h1>
+          </div>
 
 
 
-        <div class="outer-box">
-            <div class="search-block d-flex align-items-center mb20 mt20">
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <label class="pr-4 font16 mb-0">Help center List :</label>
-                    <div class="filter_search mw-100  w-auto d-block mr-0">
-                        <div class="input-group filter_search_group">
-                            <input type="text" class="form-control" [(ngModel)]="searchkey" name="searchkey"
-                                (keyup)="search(1)" placeholder="Search by category">
-                            <div class="input-group-append">
-                                <button class="btn btn_search_group" type="button"><img
-                                        src="../assets/img/icon-search.png" alt="Search"></button>
-                            </div>
-                        </div>
-                    </div>
+          <div class="outer-box">
+              <div class="search-block d-flex align-items-center mb20 mt20">
+                  <div class="d-flex align-items-center justify-content-between w-100">
+                      <label class="pr-4 font16 mb-0">Help center List :</label>
+                      <div class="filter_search mw-100  w-auto d-block mr-0">
+                          <div class="input-group filter_search_group">
+                              <input type="text" class="form-control"  [(ngModel)]="searchkey" name="searchkey" (keyup)="search(1)" placeholder="Search by category">
+                              <div class="input-group-append">
+                                  <button class="btn btn_search_group" type="button"><img src="../assets/img/icon-search.png" alt="Search"></button>
+                              </div>
+                          </div>
+                      </div>
 
 
-                    <div class="ml-auto">
-                        <a routerLink="/help-center-add" class="link font17"> <i class="fas fa-plus-circle mr-1"></i>
-                            Add Help Center</a>
-                        <a *ngIf="userType !='SUBADMIN'" (click)="getCSV() " class="link font17 ml-3"
-                            style="cursor: pointer;"> <i class="fas fa-upload"></i> Import</a>
-                    </div>
-                </div>
-            </div>
+
+                      <div class="ml-auto">
+                          <a routerLink="/help-center-add" class="link font17"> <i class="fas fa-plus-circle mr-1"></i> Add Help Center</a>
+                          <a  (click)="getCSV() "class="link font17 ml-3"> <i class="fas fa-download"></i> Import</a>
+                      </div>
+                  </div>
+              </div>
 
 
-            <div class="global-table no-radius p0">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-edit" id="myCanvas">
-                        <thead>
-                            <tr class="no_wrap_th">
-                                <th>S.No.</th>
-                                <th>Category</th>
-                                <th>Name</th>
-                                <th>Contact</th>
-                                <th>Location</th>
-                                <th class="action_td_btn3">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr
-                                *ngFor="let item of user?.result | paginate :{itemsPerPage:user?.paginationData?.limit , currentPage:user?.paginationData?.page, totalItems:user?.paginationData?.total};index as i">
-                                <td>{{(i+1)+ srNo}}</td>
-                                <td>{{item.category}}</td>
-                                <td>{{item.name}}</td>
-                                <td>{{item.contact}}</td>
-                                <td>{{item.serviceCenterLocation}}</td>
-                                <td class="action_td_btn3">
-                                    <a (click)="edit(item?._id)" routerLink="/help-center-management" class="edit-field"
-                                        style="cursor:pointer"><i class="fa fa-edit"></i></a>
-                                    <a (click)="delete(item._id,item.status)" data-backdrop="static" data-toggle="modal"
-                                        class="view-icon" style="cursor:pointer"> <i class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr *ngIf="user == '' ">
-                                <span>No record found</span>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+              <div class="global-table no-radius p0" >
+                  <div class="table-responsive">
+                      <table class="table table-bordered table-edit" id="myCanvas" >
+                          <thead>
+                              <tr class="no_wrap_th">
+                                  <th>S.No.</th>
+                                  <th>Category</th>
+                                  <th>Name</th>
+                                  <th>Contact</th>
+                                  <th>Location</th>
+                                  <th class="action_td_btn3">Action</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <tr  *ngFor="let item of user?.result | paginate :{itemsPerPage:user?.paginationData?.limit , currentPage:user?.paginationData?.page, totalItems:user?.paginationData?.total};index as i">   
+                                   <td>{{(i+1)+ srNo}}</td>
+                                   <td>{{item.category}}</td>
+                                   <td>{{item.name}}</td>
+                                   <td>{{item.contact}}</td>
+                                   <td>{{item.serviceCenterLocation}}</td>
+                                   <td class="action_td_btn3">
+                                       <a (click)="edit(item?._id)"routerLink="/help-center-management" class="edit-field" style="cursor:pointer"><i class="fa fa-edit"></i></a>
+                                       <a  (click)="delete(item._id,item.status)" data-backdrop="static" data-toggle="modal" class="view-icon" style="cursor:pointer"> <i  class="fa fa-trash"></i></a>
+                                    </td>
+                               </tr>
+                               <tr *ngIf="user == '' ">
+                                     <span>No record found</span>
+                                 </tr>
+                          </tbody>
+                      </table>
+                  </div>
 
-                <div class="custom-pagination mt30 text-center">
+                  <div class="custom-pagination mt30 text-center">
                     <nav aria-label="Page navigation example">
-                        <div>
-                            <pagination-controls (pageChange)="search($event)"></pagination-controls>
-                        </div>
-
+                          <div >
+                             <pagination-controls (pageChange)="search($event)"></pagination-controls>
+                             </div>
+                      
                     </nav>
                 </div>
-            </div>
+              </div>
 
-        </div>
-    </div>
-    <!-- Table Responsive End -->
-
+          </div>
+      </div>
+      <!-- Table Responsive End -->
+  
 </main>
 
 <!-- signout_modal Start -->
 <div class="modal fade global-modal reset-modal" id="logout_modal">
-    <div class="modal-dialog max-WT-450">
-        <div class="modal-content">
-            <div>
-                <!-- Modal body -->
-                <div class="modal-body  text-center">
-                    <div class="row align-items-center modal_flax_height">
-                        <div class="col">
-                            <div class="box-title mb30 d-inline-block">
-                                <i class="fas fa-power-off off-icon"></i>
-                                <p class="mt40">Are you sure you want to logout?</p>
-                            </div>
-                            <div class="text-center">
-                                <a href="login.html" class="btn btn-blue btn-noYes">YES</a>
-                                <button type="button" class="btn btn-red btn-noYes" data-dismiss="modal">CANCEL</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="modal-dialog max-WT-450">
+      <div class="modal-content">
+          <div>
+              <!-- Modal body -->
+              <div class="modal-body  text-center">
+                  <div class="row align-items-center modal_flax_height">
+                      <div class="col">
+                          <div class="box-title mb30 d-inline-block">
+                              <i class="fas fa-power-off off-icon"></i>
+                              <p class="mt40">Are you sure you want to logout?</p>
+                          </div>
+                          <div class="text-center">
+                              <a href="login.html" class="btn btn-blue btn-noYes">YES</a>
+                              <button type="button" class="btn btn-red btn-noYes" data-dismiss="modal">CANCEL</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 <!-- Signout Modal END-->
 
 <!-- delete_modal Start -->
 <div class="modal fade global-modal reset-modal" id="delete">
-    <div class="modal-dialog max-WT-450">
-        <form class="change_password">
-            <div class="modal-content">
-                <div class="inner_border_area">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+  <div class="modal-dialog max-WT-450">
+      <form class="change_password">
+          <div class="modal-content">
+              <div class="inner_border_area">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-                    <div class="modal-body">
-                        <div class="text-center modal_flax_height d-flex align-items-center justify-content-center">
-                            <div class="w-100">
-                                <p>Are you sure want to delete ?</p>
-                                <div class="btn-group">
-                                    <button type="button" (click)="deleteCenter()" class="btn btn-info"
-                                        data-dismiss="modal">Submit</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+                  <div class="modal-body">
+                      <div class="text-center modal_flax_height d-flex align-items-center justify-content-center">
+                          <div class="w-100">
+                              <p>Are you sure want to delete ?</p>
+                              <div class="btn-group">
+                                  <button type="button" (click)="deleteCenter()"class="btn btn-info" data-dismiss="modal">Submit</button>
+                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+</div> 

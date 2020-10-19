@@ -14,58 +14,74 @@
               <div class="main-block-innner mb40 mt40">
                   <div class="add-store-block input-style max-WT-700">
                       <form [formGroup]="addForm">
-                      <div class="row">
+                      <div class="form-row">
                           <div class="col-md-5">
                               <div class="form-group">
                                   <label class="pb-2">Category :</label>
-                                  <div class="">
-                                          <select class="form-control" [formControl]="addForm.controls['category']">
-                                              <option>Mobile</option>
-                                              <option>Laptop</option>
-                                              <option>Home Appliances</option>
-                                          </select>
-                                  </div>
+                                <select class="form-control" formControlName="category">
+                                 <option selected *ngFor="let categories of categoriesList" [value]="categories?.categoryName">{{categories?.categoryName}}</option>
+                                   </select>
+                                          <div *ngFor="let error of errorMessages.category">
+                                            <ng-container
+                                                *ngIf="category.hasError(error.type) && (category.dirty || category.touched)">
+                                                <small class="error-message">{{error.message}}</small>
+                                            </ng-container>
+                                        </div>
+                                  
                               </div>
                               <div class="form-group">
                                   <label class="pb-2"> Name :</label>
                                   <!-- <div class="">
                                       <input type="text" class="form-control"> -->
                                       <div class="col-md-14">
-                                        <input type="text" class="form-control" placeholder="Name"  [formControl]="addForm.controls['name']" maxlength="256"
+                                        <input type="text" class="form-control" placeholder="Name" (keypress)="AlphabetOnly($event)"formControlName="name" maxlength="256"
                                             minlength="2" />
-                                        <!-- <div class="error-block" *ngIf="addForm.controls['name'].dirty && addForm.controls['name'].invalid">
-                                            <span style='color:red' [ngClass]="{error:addForm.controls['name'].hasError('required')}" *ngIf="addForm.controls['name'].hasError('required')">*Please enter name</span>
-                                        </div> -->
+                                            <div *ngFor="let error of errorMessages.name">
+                                                <ng-container
+                                                    *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
+                                                    <small class="error-message">{{error.message}}</small>
+                                                </ng-container>
+                                            </div>
                                     </div>
                                   <!-- </div> -->
                               </div>
                               <div class="form-group">
                                   <label class="pb-2">Contact :</label>
                                   <div class="col-md-14">
-                                    <input type="text" class="form-control" placeholder="Contact" [formControl]="addForm.controls['contact']" maxlength="16"
+                                    <input type="text" class="form-control" placeholder="Contact" (keypress)="NumOnly($event)" formControlName="contact" maxlength="16"
                                         />
-                                    <div class="errMsg" *ngIf="addForm.controls['contact'].dirty && addForm.controls['contact'].invalid"> 
-                                    </div>
+                                        <div *ngFor="let error of errorMessages.contact">
+                                            <ng-container
+                                                *ngIf="contact.hasError(error.type) && (contact.dirty || contact.touched)">
+                                                <small class="error-message">{{error.message}}</small>
+                                            </ng-container>
+                                        </div>
                                 </div>
                               </div>
                               <div class="form-group">
                                   <label class="pb-2">Location :</label>
                                   <div class="col-md-14">
-                                    <input type="text" class="form-control" placeholder="serviceCenterLocation" [formControl]="addForm.controls['serviceCenterLocation']" maxlength="256"
+                                    <input type="text" class="form-control" placeholder="serviceCenterLocation" formControlName="serviceCenterLocation" maxlength="256"
                                         minlength="2" />
-                                    <div class="error-block" *ngIf="addForm.controls['serviceCenterLocation'].dirty && addForm.controls['serviceCenterLocation'].invalid">
-                                        <span style='color:red' [ngClass]="{error:addForm.controls['serviceCenterLocation'].hasError('required')}" *ngIf="addForm.controls['serviceCenterLocation'].hasError('required')">*Please enter location</span>
-                                    </div>
+                                        <div *ngFor="let error of errorMessages.serviceCenterLocation">
+                                            <ng-container
+                                                *ngIf="serviceCenterLocation.hasError(error.type) && (serviceCenterLocation.dirty || serviceCenterLocation.touched)">
+                                                <small class="error-message">{{error.message}}</small>
+                                            </ng-container>
+                                        </div>
                                 </div>
                               </div>
                           </div>
                           <div class="col-md-7">
                               <div class="form-group">
                                   <label class="pb-2">Description :</label>
-                                  <div class="">
-                                        
-                                      <textarea class="form-control" rows="11" placeholder="Description" [formControl]="addForm.controls['description']"></textarea>
-                                  </div>
+                                    <textarea class="form-control" rows="11" placeholder="Description" formControlName="description"></textarea>
+                                    <div *ngFor="let error of errorMessages.description">
+                                        <ng-container
+                                            *ngIf="description.hasError(error.type) && (description.dirty || description.touched)">
+                                            <small class="error-message">{{error.message}}</small>
+                                        </ng-container>
+                                    </div> 
                               </div>
                           </div>
                       </div>

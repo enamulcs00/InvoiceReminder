@@ -29,7 +29,6 @@ export class UserManagementComponent implements OnInit {
   data: any = [];
   userList: any;
   str: any = "All";
-  userType: any;
 
 
   constructor(public router: Router, public service: MainServicesService) { }
@@ -37,7 +36,6 @@ export class UserManagementComponent implements OnInit {
   // constructor(public router:Router) { }
 
   ngOnInit() {
-    this.userType = JSON.parse(localStorage.getItem('type'))
     this.search(this.pageNo)
 
     //this.check() 

@@ -16,12 +16,10 @@ export class TransactionManagementComponent implements OnInit {
   fromDate: any;
   twoDate: any;
   total: any;
-  userType: any;
 
   constructor(public service: MainServicesService) { }
 
   ngOnInit() {
-    this.userType = JSON.parse(localStorage.getItem('type'))
     this.search(this.p)
 
   }

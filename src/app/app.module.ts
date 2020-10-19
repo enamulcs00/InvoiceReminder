@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { NgModule } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,15 +33,16 @@ import { TermsViewComponent } from './pages/terms-view/terms-view.component';
 import { ViewOffersComponent } from './pages/view-offers/view-offers.component';
 import { SideMenuComponent } from './pages/side-menu/side-menu.component';
 import { HeaderBarComponent } from './pages/header-bar/header-bar.component';
-import { MainServicesService } from './main-services.service';
+import { MainServicesService} from './main-services.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ReactiveFormsModule, FormsModule } from '../../node_modules/@angular/forms';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
-import { NgxPaginationModule } from 'ngx-pagination';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { countryList } from "./pages/countrylist";
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { EditPromotionComponent } from './edit-promotion/edit-promotion.component';
 import { PromotionEditComponent } from './promotion-edit/promotion-edit.component';
+import { TutorialEditComponent } from './pages/tutorial-edit/tutorial-edit.component';
 
 
 // import {Debounce} from 'angular2-debounce';
@@ -82,9 +83,10 @@ import { PromotionEditComponent } from './promotion-edit/promotion-edit.componen
     ResetPasswordComponent,
     EditPromotionComponent,
     PromotionEditComponent,
+    TutorialEditComponent,
 
-
-
+    
+   
   ],
   imports: [
     BrowserModule,
@@ -94,15 +96,15 @@ import { PromotionEditComponent } from './promotion-edit/promotion-edit.componen
     FormsModule,
     HttpClientModule,
     ToastrModule.forRoot({
-      maxOpened: 1,
+      maxOpened :1,
       preventDuplicates: true,
     }),
-    NgxPaginationModule,
-
-
+     NgxPaginationModule,
+    
+     
 
   ],
-  providers: [MainServicesService, CookieService, countryList,],
+  providers: [MainServicesService,CookieService,countryList,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
