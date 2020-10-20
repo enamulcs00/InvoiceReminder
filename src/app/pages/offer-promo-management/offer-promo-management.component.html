@@ -230,8 +230,8 @@
                                         <label class="d-block max-WT-60 mb-0">From :</label>
                                         <div class="">
                                             <input type="date" class="form-control " name="formdate"
-                                                [(ngModel)]="calender.formdate" (change)="formdate()"
-                                                placeholder="xx-xx-xxxx">
+                                                 (change)="formdate()" formControlName="startDate" min="{{todayDate | date:'yyyy-MM-dd'}}"
+                                                 (ngModelChange)="changed($event)" placeholder="xx-xx-xxxx">
                                         </div>
                                     </div>
                                 </div>
