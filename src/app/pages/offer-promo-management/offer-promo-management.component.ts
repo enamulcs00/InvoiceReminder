@@ -32,7 +32,10 @@ export class OfferPromoManagementComponent implements OnInit {
 
   calender: any = { todate: '', formdate: '' }
   fromDate: any;
+  stardate:any;
   twoDate: any;
+  nowDate2: any;
+  todayDate: Date;
   total: any;
   activeTab: any = localStorage.getItem('tabname') ? localStorage.getItem('tabname') : 'offers';
 
@@ -63,6 +66,14 @@ export class OfferPromoManagementComponent implements OnInit {
     this.toMaxDate = new Date()
 
   }
+  changed(event) {
+    if (event) {
+    this.nowDate2 = event;
+    }
+    else {
+    this.nowDate2 = ''
+    }
+    }
 
   //  to switch between tabs
   switchTab(tab) {

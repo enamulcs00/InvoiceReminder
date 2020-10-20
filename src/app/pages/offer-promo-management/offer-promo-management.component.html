@@ -229,7 +229,7 @@
                                     <div class="d-flex align-items-center justify-content-between">
                                         <label class="d-block max-WT-60 mb-0">From :</label>
                                         <div class="">
-                                            <input type="date" class="form-control " name="formdate"
+                                            <input type="date" class="form-control " name="formdate" [(ngModel)]="stardate"
                                                  (change)="formdate()" formControlName="startDate" min="{{todayDate | date:'yyyy-MM-dd'}}"
                                                  (ngModelChange)="changed($event)" placeholder="xx-xx-xxxx">
                                         </div>
@@ -239,7 +239,7 @@
                                     <div class="d-flex align-items-center justify-content-between">
                                         <label class="d-block max-WT-50 mb-0">To :</label>
                                         <div class="">
-                                            <input type="date" class="form-control " name="todate"
+                                            <input type="date" class="form-control " name="todate" min="{{stardate | date:'yyyy-MM-dd'}}"
                                                 [(ngModel)]="calender.todate" (change)="todate()"
                                                 placeholder="xx-xx-xxxx">
                                         </div>
