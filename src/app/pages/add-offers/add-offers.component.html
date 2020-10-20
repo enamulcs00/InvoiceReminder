@@ -58,23 +58,23 @@
                             <div class="col-6">
                                 <label class="d-block pb-2">Start Date :</label>
                                 <div class="">
-                                    <input type="date" class="form-control " name="formdate" id="datepicker"
-                                    formControlName="startDate" (change)="formdate()" placeholder="xx-xx-xxx" max="{{todayDate | date:'yyyy-MM-dd'}}"     
+                                    <input type="date" class="form-control " name="formdate" id="datepicker" [(ngModel)]="stardate"
+                                    formControlName="startDate" (change)="formdate()" placeholder="xx-xx-xxx"      
                                         (ngModelChange)="changed($event)" min="{{todayDate | date:'yyyy-MM-dd'}}">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <label class="d-block pb-2">End Date :</label>
                                 <div class="">
-                                    <input type="date" class="form-control " name="todate" formControlName="endDate"
+                                    <input type="date" class="form-control " name="todate" formControlName="endDate" [readOnly]="StartDateFirst"
                                         (change)="todate()" placeholder="xx-xx-xxx" (ngModelChange)="changed($event)"
-                                        min="{{todayDate | date:'yyyy-MM-dd'}}">
+                                        min="{{stardate | date:'yyyy-MM-dd'}}">
                                 </div>
                             </div>
                         </div>
                         <div class="text-center mt40">
                             <button type="button" class="btn btn-large  max-WT-150 btn-green mr-2"
-                                (click)="addOffer()">Add Offers </button>
+                                (click)="addOffer()" [disabled]="offerForm.invalid">Add Offers </button>
                             <button type="button" class="btn btn-large  max-WT-150 btn-green mr-2"
                                 (click)="backBtn()">Back</button>
                         </div>

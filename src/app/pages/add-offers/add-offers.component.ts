@@ -19,6 +19,8 @@ export class AddOffersComponent implements OnInit {
   calender: any = { todate: '', formdate: '' }
   fromDate: any;
   twoDate: any;
+  stardate:any;
+  StartDateFirst:boolean=true;
   total: any;
   hours: any;
   minit: any;
@@ -129,6 +131,7 @@ export class AddOffersComponent implements OnInit {
                 formdate() {
                 this.fromDate = new Date()
                 this.setdate();
+                this.StartDateFirst = false;
                 }
 
                 todate() {
