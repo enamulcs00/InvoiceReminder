@@ -110,7 +110,7 @@ export class OfferPromoManagementComponent implements OnInit {
     this.service.postApi(url, object, 0).subscribe((data: any) => {
       if (data.responseCode === 200) {
         this.getofferdata = data.result;
-        console.log('this.getofferdata', this.getofferdata)
+        //console.log('this.getofferdata', this.getofferdata)
         if (data.result.length > 0) {
           this.paginationData = data.paginationData
           this.limit = this.paginationData.limit

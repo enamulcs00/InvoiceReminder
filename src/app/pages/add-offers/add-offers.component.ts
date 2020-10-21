@@ -71,7 +71,7 @@ export class AddOffersComponent implements OnInit {
             for (let i = 0; i < filesAmount; i++) {
               var reader = new FileReader();
                 reader.onload = (event:any) => {
-                  console.log(event.target.result);
+                 // console.log(event.target.result);
                    this.urls.push(event.target.result); 
                     }
                     reader.readAsDataURL(event.target.files[i]);
@@ -85,11 +85,11 @@ export class AddOffersComponent implements OnInit {
   addOffer(){
     if(this.seconds<10){
       this.seconddata='0'+this.seconds
-        console.log('this.seconddata1==>',this.seconddata)
+        //console.log('this.seconddata1==>',this.seconddata)
           }
             else{
               this.seconddata = this.seconds
-                console.log('this.seconddata2==>',this.seconddata)
+                //console.log('this.seconddata2==>',this.seconddata)
                  }
                   if(this.minutes<10){
                     this.minutesdata ='0'+this.minutes
@@ -106,19 +106,19 @@ export class AddOffersComponent implements OnInit {
                 "startDate"     : this.offerForm.value.startDate+'T'+this.hours+':'+this.minutesdata+':'+this.seconddata+'.'+this.milliseconds+'Z',
                 "endDate"       : this.offerForm.value.endDate+'T'+this.hours+':'+this.minutesdata+':'+this.seconddata+'.'+this.milliseconds+'Z'
                 }
-                console.log('adddofferapi===>>',request)
+                //console.log('adddofferapi===>>',request)
                 this.service.postApi('offer/addOffer',request,0).subscribe((data:any)=>{
                 if(data.responseCode == 200){
                 this.addofferdata1 = data.result1
                 this.id =data.result1._id
-                console.log('addofferdata1===>>',this.addofferdata1)
-                console.log('id===>>',this.id)
+               // console.log('addofferdata1===>>',this.addofferdata1)
+              //  console.log('id===>>',this.id)
                 this.addofferdata_status = data.result1
                 var obj ={
                 _id: this.id,
                 status: this.addofferdata_status,
                 }
-                console.log('obje===>>',obj)
+             //   console.log('obje===>>',obj)
                 this.router.navigate(['offer-promo-management'],{
                 queryParams:{obj:JSON.stringify(obj)}
                 }) 
@@ -137,7 +137,7 @@ export class AddOffersComponent implements OnInit {
                 todate() {
                 this.twoDate = new Date()
                 this.endDate = this.twoDate.toString();
-                console.log('enddate====>>>', this.endDate)
+              //  console.log('enddate====>>>', this.endDate)
                 this.setdate();
                 }
 
@@ -175,10 +175,10 @@ export class AddOffersComponent implements OnInit {
      //------------------GenerateCode--------------------------    
      generateCode() {
       this.service.getApi('service/generateCode', 1).subscribe((res: any) => {
-        console.log('response', res.result)
+        //console.log('response', res.result)
         if (res.responseCode == 200) {
           this.generetedCode = res.result.code
-          console.log('offerCode', this.generetedCode)
+          //console.log('offerCode', this.generetedCode)
           this.offerForm.patchValue({
             password: this.generetedCode
           })
