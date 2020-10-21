@@ -12,11 +12,12 @@ type:any;
   result: any;
   successData: any;
   description={term:'',privacy:'',tutorial:''}
-  constructor(public router: Router, public service: MainServicesService) { }
+  constructor(public router: Router, public service: MainServicesService) {}
 
   ngOnInit() {
     this.viewTermsAndConditions();
     this.viewPrivacyPolicy();
+    this.viewTutorial();
   }
 
   onTermsEditClick(){
@@ -32,7 +33,7 @@ type:any;
       }
       console.log('apireq ==>>', apireq)
       this.service.postApi('static/getStaticContent',apireq,1).subscribe((success:any)=> {
-        console.log(success)
+        // console.log('Description:-->:',success)
         this.successData=success;
         if (success.responseCode === 200) {
           this.description.term=success.result.description
