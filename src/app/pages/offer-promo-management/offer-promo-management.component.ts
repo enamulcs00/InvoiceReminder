@@ -13,9 +13,10 @@ declare var $: any;
 })
 export class OfferPromoManagementComponent implements OnInit {
   [x: string]: any;
-
+  totalPage:any;
   searchkey: any = '';
   pageNo: any = 1;
+  page:any;
   pageNumber: any = 1;
   user: any = [];
   srNo: number;
@@ -27,14 +28,14 @@ export class OfferPromoManagementComponent implements OnInit {
   message: any;
   newData: any = [];
   p: number = 1;
-
+  getofferdata:any;
   paginationData: any = {};
-
+  limit:any;
   calender: any = { todate: '', formdate: '' }
   fromDate: any;
-  stardate:any;
+  
   twoDate: any;
-  nowDate2: any;
+  
   todayDate: Date;
   total: any;
   activeTab: any = localStorage.getItem('tabname') ? localStorage.getItem('tabname') : 'offers';
@@ -66,14 +67,6 @@ export class OfferPromoManagementComponent implements OnInit {
     this.toMaxDate = new Date()
 
   }
-  changed(event) {
-    if (event) {
-    this.nowDate2 = event;
-    }
-    else {
-    this.nowDate2 = ''
-    }
-    }
 
   //  to switch between tabs
   switchTab(tab) {
