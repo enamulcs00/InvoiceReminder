@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+.card-body .row .col-md-6:nth-child(2) .dash_list {
+    height: 44%;
+}
+.card-body .row .col-md-6:last-child .dash_list {
+    height: 89%;
+}
+
+
+.form-control:focus{
+    box-shadow: black!important;
+}
+/* .add-store-block.input-style.max-WT-400 {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+} */
+/* .d-flex.text-center.mb-4.justify-content-between.flex-wrap.ng-star-inserted {
+    max-width: 50%;
+    min-width: 50%;
+}
+.add-store-block.input-style.max-WT-400  .mb-4.text-left {
+    display: none;
+}
+.text-center.mt40 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+} */

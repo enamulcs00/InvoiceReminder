@@ -1,0 +1,105 @@
+<app-side-menu ></app-side-menu>
+<app-header-bar></app-header-bar>
+  <main class="middle-content">
+      <div class="content-section">
+          <div class="page_title_block">
+              <h1 class="page_title">Static Content Management</h1>
+          </div>
+          
+          <div class="global-table no-radius p0">
+              <div class="table-responsive">
+                  <table class="table table-bordered table-edit">
+                      <thead>
+                          <tr class="no_wrap_th">
+                              <th>Title</th>
+                              <th>Description</th>
+                              <th class="action_td_btn3">Action</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td style="min-width:200px;">Terms & Conditions</td>
+                              <td> {{description.term}}</td>
+                              <td class="action_td_btn3">
+                                  <a routerLink="/terms-view" class="link" style="cursor: pointer; color: #1494c9">View</a>
+                                  <a (click)="onTermsEditClick()" class="link" style="cursor: pointer; color: #1494c9"><u>Edit</u></a>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td style="min-width:200px;">Privacy Policy</td>
+                              <td>{{description.privacy}}</td>
+                              <td class="action_td_btn3">
+                                  <a routerLink="/privacy-view" class="link" style="cursor: pointer; color: #1494c9">View</a>
+                                  <a (click)="onPrivacyEditClick()" class="link" style="cursor: pointer; color: #1494c9"><u>Edit</u></a>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td style="min-width:200px;">Tutorials</td>
+                              <td> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the... </td>
+                              <td class="action_td_btn3">
+                                  <a routerLink="/tutorials-view" class="link" style="cursor: pointer; color: #1494c9">View</a>
+                                  <a (click)="tutorialEdit()" class="link" style="cursor: pointer; color: #1494c9"><u>Edit</u></a>
+                              </td>
+                          </tr>
+                         
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+
+         
+      </div>
+      <!-- Table Responsive End -->
+
+</main>
+
+<!-- signout_modal Start -->
+<div class="modal fade global-modal reset-modal" id="logout_modal">
+  <div class="modal-dialog max-WT-450">
+      <div class="modal-content">
+          <div>
+              <!-- Modal body -->
+              <div class="modal-body  text-center">
+                  <div class="row align-items-center modal_flax_height">
+                      <div class="col">
+                          <div class="box-title mb30 d-inline-block">
+                              <i class="fas fa-power-off off-icon"></i>
+                              <p class="mt40">Are you sure you want to logout?</p>
+                          </div>
+                          <div class="text-center">
+                              <a routerLink="/login" class="btn btn-blue btn-noYes">YES</a>
+                              <button type="button" class="btn btn-red btn-noYes" data-dismiss="modal">CANCEL</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Signout Modal END-->
+
+<!-- delete_modal Start -->
+<div class="modal fade global-modal reset-modal" id="delete">
+  <div class="modal-dialog max-WT-450">
+      <form class="change_password">
+          <div class="modal-content">
+              <div class="inner_border_area">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                  <div class="modal-body">
+                      <div class="text-center modal_flax_height d-flex align-items-center justify-content-center">
+                          <div class="w-100">
+                              <p>Are you sure want to delete this user?</p>
+                              <div class="btn-group">
+                                  <button type="button" class="btn btn-info" data-dismiss="modal">Submit</button>
+                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>

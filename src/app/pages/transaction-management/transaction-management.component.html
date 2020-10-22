@@ -1,0 +1,259 @@
+<app-side-menu></app-side-menu>
+<app-header-bar></app-header-bar>
+<main class="middle-content">
+    <div class="content-section">
+        <div class="page_title_block">
+            <h1 class="page_title">Transaction Management</h1>
+        </div>
+        <div class="fieldset-block">
+            <fieldset class="global-fieldset  mb-1">
+                <legend>Filter by</legend>
+                <div class="fieldset-content">
+                    <div class="search-block d-flex align-items-center mb20 mt20">
+                        <div class="d-flex align-items-center  w-100">
+                            <div class="filter_search max-WT-400 d-block mr-0">
+                                <div class="input-group filter_search_group">
+                                    <input type="text" class="form-control" [(ngModel)]="searchkey" name="searchkey"
+                                        (keyup)="search(1)" placeholder="Search by Package/Customer">
+                                    <div class="input-group-append">
+                                        <button class="btn btn_search_group" type="button"><img
+                                                src="../assets/img/icon-search.png" alt="Search"></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-green ml-2" (click)="searchFilter()">
+                                Search
+                            </button>
+                            <img src="assets/img/import_icon.png" alt=""
+                                style="height: 30px; width: 30px;cursor: pointer;" (click)="exportAsXLSX()">Export
+                        </div>
+                    </div>
+                    <div class="form-group row max-WT-500">
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <label class="d-block max-WT-60 mb-0">From :</label>
+                                <div class="">
+                                    <input type="date" class="form-control " name="formdate"
+                                        [(ngModel)]="calender.formdate" (change)="formdate()" placeholder="xx-xx-xxxx">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <label class="d-block max-WT-50 mb-0">To :</label>
+                                <div class="">
+                                    <input type="date" class="form-control " name="todate" [(ngModel)]="calender.todate"
+                                        (change)="todate()" placeholder="xx-xx-xxxx">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+        <!-- <div class="text-right mb-3">
+                      Showing results 10 OF 50
+                  </div>    -->
+        <div class="global-table no-radius p0">
+            <div class="table-responsive">
+                <table class="table table-bordered table-edit">
+                    <thead>
+                        <tr class="no_wrap_th">
+                            <th>S.No.</th>
+                            <th>Customer</th>
+                            <th>Package Name</th>
+                            <th>Transaction Date</th>
+                            <th>Transaction Time</th>
+                            <th>Payment Method</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tr *ngFor="let item of user| paginate: { itemsPerPage: 10, currentPage: p, totalItems: total }; let i = index"
+                        [attr.data-index]="i">
+                        <!-- <tr *ngFor="let item of transactionArry | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total }; let i = index" [attr.data-index]="i"> -->
+
+                        <td *ngIf="p == 1">{{i + 1}}</td>
+                        <td *ngIf="p > 1">{{i + 1 + 10 * (p-1)}}</td>
+                        <td>{{item.userName}}</td>
+                        <td>{{item.packageName}}</td>
+                        <td>{{item.transactionDate}}</td>
+                        <td>{{item.transactionTime}}</td>
+                        <td>{{item.paymentMethod}}</td>
+                        <td>{{item.amount}}</td>
+                    </tr>
+                    <tr *ngIf="user == '' ">
+                        <span>No record found</span>
+                    </tr>
+                </table>
+            </div>
+            <div class="custom-pagination mt30 text-center">
+                <nav aria-label="Page navigation example">
+                    <div>
+                        <pagination-controls (pageChange)="search($event)"></pagination-controls>
+                    </div>
+
+                </nav>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- Table Responsive End -->
+
+</main>
+
+
+
+<!-- signout_modal Start -->
+<div class="modal fade global-modal reset-modal" id="logout_modal">
+    <div class="modal-dialog max-WT-450">
+        <div class="modal-content">
+            <div>
+                <!-- Modal body -->
+                <div class="modal-body  text-center">
+                    <div class="row align-items-center modal_flax_height">
+                        <div class="col">
+                            <div class="box-title mb30 d-inline-block">
+                                <i class="fas fa-power-off off-icon"></i>
+                                <p class="mt40">Are you sure you want to logout?</p>
+                            </div>
+                            <div class="text-center">
+                                <a routerLink="login" class="btn btn-blue btn-noYes">YES</a>
+                                <button type="button" class="btn btn-red btn-noYes" data-dismiss="modal">CANCEL</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Signout Modal END-->
+
+<!-- delete_modal Start -->
+<div class="modal fade global-modal reset-modal" id="delete">
+    <div class="modal-dialog max-WT-450">
+        <form class="change_password">
+            <div class="modal-content">
+                <div class="inner_border_area">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <div class="modal-body">
+                        <div class="text-center modal_flax_height d-flex align-items-center justify-content-center">
+                            <div class="w-100">
+                                <p>Are you sure want to delete this category?</p>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">Submit</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- delete_modal End -->
+
+<!-- Edit Category Modal Start -->
+<div class="modal fade global-modal reset-modal" id="edit_category">
+    <div class="modal-dialog max-WT-500">
+        <form class="change_password">
+            <div class="modal-content">
+                <div class="inner_border_area">
+                    <div class="modal-header ">
+                        <h5 class="modal-title text-center">Edit Category</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row align-items-center modal_flax_height">
+                            <div class="col">
+                                <div class="form-group">
+                                    <div class="w-100">
+                                        <h6>Category Name</h6>
+                                        <input type="text" class="form-control" placeholder="Enter category name">
+                                    </div>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-info" data-dismiss="modal">Update</button>
+                                        <button type="button" class="btn btn-danger"
+                                            data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- End -->
+
+<!-- Add Category Modal Start -->
+<div class="modal fade global-modal reset-modal" id="add_category">
+    <div class="modal-dialog max-WT-500">
+        <form class="change_password">
+            <div class="modal-content">
+                <div class="inner_border_area">
+                    <div class="modal-header ">
+                        <h5 class="modal-title text-center">Add Category</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row align-items-center modal_flax_height">
+                            <div class="col">
+                                <div class="form-group">
+                                    <div class="w-100">
+                                        <h6>Category Name</h6>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-info" data-dismiss="modal">Save</button>
+                                        <button type="button" class="btn btn-danger"
+                                            data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- End -->
+<!-- 
+<form [formGroup]="SearchForm">
+    <div class=" filter-block">
+    <div class="form-group" style="min-width: 175px;">
+    <label>
+    <h5>Search By User Name/Email/Mobile No</h5>
+    </label>
+    <input type="text" formControlName="search" placeholder="Search by user name/email/mobile no" maxlength="256" class="form-control" />
+    </div>
+    <div class="form-group" style="min-width: 175px;">
+    <label>
+    <h5>From Date</h5>
+    </label>
+    <input type="date" formControlName="fromDate" class="form-control" />
+    </div>
+    <div class="form-group" style="min-width: 175px;">
+    <label>
+    <h5>To Date</h5>
+    </label>
+    <input type="date" formControlName="toDate" class="form-control" />
+    </div>
+    <div class="form-group btnfilter">
+    <label>
+    <h5>&nbsp;</h5>
+    </label>
+    <div class="patient-section" style="min-width: 200px;">
+    <button class="btn btn-primary btn-sm" (click)="search()" title="search">
+    <i class="fa fa-search" aria-hidden="true"></i>
+    </button> -->

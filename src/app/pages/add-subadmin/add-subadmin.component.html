@@ -1,0 +1,148 @@
+<app-header-bar></app-header-bar>
+<app-side-menu></app-side-menu>
+  <main class="middle-content">
+      <div class="content-section">
+              <!-- <div class="page_title_block">
+                  <h1 class="page_title">Add Sub Admin</h1>
+                </div> -->
+                <ol class="breadcrumb custom-breadcrum">
+                        <li class="breadcrumb-item active">
+                            <a routerLink="/subadmin-management">Sub Admin Management </a>
+                        </li>
+                        <li class="breadcrumb-item">Add Sub Admin</li>
+                    </ol>
+              <div class="order-view mt30 max-WT-700 mrgn-0-auto">
+            <form [formGroup]="addSubAdminForm">
+              <div class="main-block-innner mb40 mt40">
+                  <div class="add-store-block input-style">
+                      <div class="form-group row align-items-center">
+                          <label class="col-md-4"> Full Name :</label>
+                          <div class="col-md-8">
+                              <input type="text" class="form-control" placeholder="Full name" [formControl]="addSubAdminForm.controls['fullName']" maxlength="256"
+                              minlength="2">
+                              <div class="error-block" *ngIf="addSubAdminForm.controls['fullName'].dirty && addSubAdminForm.controls['fullName'].invalid">
+                                    <span style='color:red' [ngClass]="{error:addSubAdminForm.controls['fullName'].hasError('required')}" *ngIf="addSubAdminForm.controls['fullName'].hasError('required')">*Please enter user full name.</span>
+                                    <span style='color:red' [ngClass]="{error: addSubAdminForm.controls['fullName'].hasError('pattern')}" *ngIf="addSubAdminForm.controls['fullName'].hasError('pattern')">*Full name should be characters only.</span>
+                                    <span style='color:red' [ngClass]="{error: addSubAdminForm.controls['fullName'].hasError('maxlength') && addSubAdminForm.controls['fullName'].dirty}"
+                                        *ngIf="addSubAdminForm.controls['fullName'].hasError('maxlength') && ! addSubAdminForm.controls['fullName'].hasError('pattern')">*Full name should be maximum 256 characters.</span>
+                                    <span style='color:red' [ngClass]="{error: addSubAdminForm.controls['fullName'].hasError('minlength') && addSubAdminForm.controls['fullName'].dirty}"
+                                        *ngIf="addSubAdminForm.controls['fullName'].hasError('minlength') && ! addSubAdminForm.controls['fullName'].hasError('pattern')">*Full name should be atleast 2 characters.</span>
+                                </div>
+                          </div>
+                      </div>
+                      <div class="form-group row align-items-center">
+                          <label class="col-md-4">Password :</label>
+                          <div class="col-md-8">
+                              <input type="password" class="form-control" [formControl]='addSubAdminForm.controls["password"]' maxlength="16" placeholder="Password">
+                              <div class="error-block" *ngIf="addSubAdminForm.controls['password'].dirty && addSubAdminForm.controls['password'].invalid">
+
+                                    <span style='color:red' [ngClass]="{error:addSubAdminForm.controls['password'].hasError('required')}" *ngIf="addSubAdminForm.controls['password'].hasError('required')">*Please enter password.</span>
+                                    <!-- <span style='color:red' [ngClass]="{error:addForm.controls['password'].hasError('minlength')}" *ngIf="resetPasswordForm.controls['password'].hasError('minlength')">*Password must be between 8 to 16 characters</span> -->
+
+                                    <!-- <span style='color:red' [ngClass]="{error:addForm.controls['password'].hasError('maxlength')}" *ngIf="resetPasswordForm.controls['password'].hasError('maxlength')">*Password must be between 8 to 16 characters</span> -->
+
+                                    <span style='color:red' [ngClass]="{error:addSubAdminForm.controls['password'].hasError('pattern')}" *ngIf="addSubAdminForm.controls['password'].hasError('pattern')">*Password must be between 8 to 16 characters and contain atleast one special character,one digit</span>
+                                </div>
+                          </div>
+                      </div>
+                      <div class="form-group row align-items-center">
+                          <label class="col-md-4">Confirm Password :</label>
+                          <div class="col-md-8">
+                              <input type="password" class="form-control" placeholder="Retype your password" [formControl]='addSubAdminForm.controls["confirmPassword"]'maxlength="16">
+                              <div class="error-block" *ngIf="addSubAdminForm.controls['confirmPassword'].dirty">
+                                    <span style='color:red' *ngIf="addSubAdminForm.controls['confirmPassword'].value != addSubAdminForm.controls['password'].value">*Password mismatched.</span>
+
+                                </div>
+                          </div>
+                      </div>
+                      <div class="form-group row align-items-center">
+                          <label class="col-md-4">Email :</label>
+                          <div class="col-md-8">
+                              <input type="email" class="form-control" placeholder="Email" [formControl]="addSubAdminForm.controls['email']" maxlength="50">
+                              <div class="error-block" *ngIf="addSubAdminForm.controls['email'].dirty && addSubAdminForm.controls['email'].invalid">
+                                    <span style='color:red' [ngClass]="{error:addSubAdminForm.controls['email'].hasError('required')}" *ngIf="addSubAdminForm.controls['email'].hasError('required')">*Please enter an email.</span>
+                                    <span style='color:red' [ngClass]="{error: addSubAdminForm.controls['email'].hasError('pattern')}" *ngIf="addSubAdminForm.controls['email'].hasError('pattern')">*Please enter valid email.</span>
+                                    <span style='color:red' [ngClass]="{error: addSubAdminForm.controls['email'].hasError('maxlength') && addSubAdminForm.controls['email'].dirty}"
+                                        *ngIf="addSubAdminForm.controls['email'].hasError('maxlength') && ! addSubAdminForm.controls['email'].hasError('pattern')">*Please enter valid email.</span>
+                                </div>
+                          </div>
+                      </div>
+                      <!-- <div class="d-flex mt-5 max-WT-400 justify-content-center mb-5"> -->
+                          <div class="form-group row ">
+                          <label class="col-md-4">Permission :</label>
+                          <!-- <div class="pl-5"> -->
+                              <div class="col-md-8">
+                              <label class="checkbox-design d-block">
+                                <input type="checkbox"  formControlName="dashboard" value="True"><span></span>DashBoard
+                              </label>
+                              <label class="checkbox-design d-block mb-2 mt-2">
+                                <input type="checkbox"  formControlName="userManagement" value="True"><span></span>User Management
+                              </label>
+                              <label class="checkbox-design d-block mb-2 mt-2">
+                                <input type="checkbox"  formControlName="subAdminManagement" value="True"><span></span>Sub-Admin Management
+                              </label>
+                              <label class="checkbox-design d-block mb-2 mt-2">
+                                <input type="checkbox"  formControlName="manageRecords" value="True"><span></span>Manage Records
+                              </label>
+                              <label class="checkbox-design d-block mb-2 mt-2">
+                                <input type="checkbox"  formControlName="categoryManagement" value="True"><span></span>Category Management
+                              </label>
+                              <label class="checkbox-design d-block mb-2 mt-2">
+                                <input type="checkbox"  formControlName="packageManagement" value="True"><span></span>Package Management
+                              </label>
+                              <label class="checkbox-design d-block mb-2 mt-2">
+                                <input type="checkbox"  formControlName="offerAndPromotionManagement" value="True"><span></span>Offer & Promotion Management
+                              </label>
+                              <label class="checkbox-design d-block mb-2 mt-2">
+                                <input type="checkbox"  formControlName="transactionManagement" value="True"><span></span>Transaction Management
+                              </label>
+                              <label class="checkbox-design d-block mb-2 mt-2">
+                                <input type="checkbox"  formControlName="helpCenterManagement" value="True"><span></span>Help Center Management
+                              </label>
+                              <label class="checkbox-design d-block mb-2 mt-2">
+                                <input type="checkbox"  formControlName="staticContentManagement" value="True"><span></span>Static Content Management
+                              </label>
+                              <!-- <label class="checkbox-design d-block">
+                                <input type="checkbox"><span></span>
+                              </label> -->
+                          </div>
+                      </div>
+                      <div class="text-center mt40">
+                            <button class="btn btn-large  max-WT-150 btn-green" [disabled]="addSubAdminForm.invalid || (addSubAdminForm.controls['confirmPassword'].value != addSubAdminForm.controls['password'].value)"
+                            (click)="addUser()">Add</button>
+                      </div>
+                  </div>
+              </div>
+              </form>
+          </div>
+
+          </div>
+      
+      
+</main>
+
+
+<!-- signout_modal Start -->
+<div class="modal fade global-modal reset-modal" id="logout_modal">
+  <div class="modal-dialog max-WT-450">
+      <div class="modal-content">
+          <div>
+              <!-- Modal body -->
+              <div class="modal-body  text-center">
+                  <div class="row align-items-center modal_flax_height">
+                      <div class="col">
+                          <div class="box-title mb30 d-inline-block">
+                              <i class="fas fa-power-off off-icon"></i>
+                              <p class="mt40">Are you sure you want to logout?</p>
+                          </div>
+                          <div class="text-center">
+                              <a routerLink='/login' class="btn btn-blue btn-noYes">YES</a>
+                              <button type="button" class="btn btn-red btn-noYes" data-dismiss="modal">CANCEL</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
