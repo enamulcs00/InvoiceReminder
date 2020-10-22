@@ -1,0 +1,177 @@
+<app-side-menu></app-side-menu>
+<app-header-bar></app-header-bar>
+<main class="middle-content">
+    <div class="content-section">
+        <div class="page_title_block">
+            <h1 class="page_title">Package Management</h1>
+        </div>
+        <div class="outer-box">
+            <div class="search-block d-flex align-items-center mb20 mt20">
+                <div class="d-flex align-items-center justify-content-between">
+                    <label class="pr-4 font16 mb-0">Package List :</label>
+                    <div class="filter_search mw-100  w-auto d-block mr-0">
+                        <div class="input-group filter_search_group">
+                            <input type="text" class="form-control" [(ngModel)]="searchkey" name="searchkey"
+                                (keyup)="search(1)" placeholder="Search by PackageName">
+                            <div class="input-group-append">
+                                <button class="btn btn_search_group" type="button"><img
+                                        src="../assets/img/icon-search.png" alt="Search"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img src="assets/img/import_icon.png" alt="" style="height: 30px; width: 30px;cursor: pointer;"
+                    (click)="exportAsXLSX()">Export
+            </div>
+
+            <div class="global-table no-radius p0">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-edit">
+                        <thead>
+                            <tr class="no_wrap_th">
+                                <th>S.No.</th>
+                                <th>Package Name</th>
+                                <th>Price</th>
+                                <th>Coins</th>
+                                <th class="action_td_btn3">Action</th>
+                            </tr>
+                        </thead>
+                        <tr
+                            *ngFor="let item of user?.result | paginate :{itemsPerPage:user?.paginationData?.limit , currentPage:user?.paginationData?.page, totalItems:user?.paginationData?.total};index as i">
+                            <td>{{(i+1)+ srNo}}</td>
+                            <td>{{item.packageName}}</td>
+                            <td>{{item.currencyType+item.price}}</td>
+                            <td>{{item.coins}}</td>
+
+                            <td class="action_td_btn3">
+                                <a href="#edit_package" data-toggle="modal" (click)="editModalFunc(item)"><i
+                                        class="fa fa-edit"></i></a>
+
+                            </td>
+                        </tr>
+                        <tr *ngIf="user == '' ">
+                            <span>No record found</span>
+                        </tr>
+                    </table>
+                </div>
+                <div class="custom-pagination mt30 text-center">
+                    <nav aria-label="Page navigation example">
+                        <div>
+                            <pagination-controls (pageChange)="search($event)"></pagination-controls>
+                        </div>
+
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Table Responsive End -->
+
+</main>
+
+<!-- signout_modal Start -->
+<div class="modal fade global-modal reset-modal" id="logout_modal">
+    <div class="modal-dialog max-WT-450">
+        <div class="modal-content">
+            <div>
+                <!-- Modal body -->
+                <div class="modal-body  text-center">
+                    <div class="row align-items-center modal_flax_height">
+                        <div class="col">
+                            <div class="box-title mb30 d-inline-block">
+                                <i class="fas fa-power-off off-icon"></i>
+                                <p class="mt40">Are you sure you want to logout?</p>
+                            </div>
+                            <div class="text-center">
+                                <a routerLink="/login" class="btn btn-blue btn-noYes">YES</a>
+                                <button type="button" class="btn btn-red btn-noYes" data-dismiss="modal">CANCEL</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Signout Modal END-->
+
+
+<!-- Edit Category Modal Start -->
+<div class="modal fade global-modal reset-modal" id="edit_package">
+    <div class="modal-dialog max-WT-500">
+        <form class="change_password" [formGroup]="editForm">
+            <div class="modal-content">
+                <div class="inner_border_area">
+                    <div class="modal-header ">
+                        <h5 class="modal-title text-center">Edit Package</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row align-items-center modal_flax_height">
+                            <div class="col">
+                                <div class="form-group">
+                                    <div class="w-100">
+                                        <h6>Package Name</h6>
+                                        <input type="text" class="form-control" formControlName="packageName"
+                                            placeholder="Please enter Packagename" maxlength="256" minlength="2">
+                                        <div class="error-block"
+                                            *ngIf="editForm.controls['packageName'].dirty && editForm.controls['packageName'].invalid">
+                                            <span style='color:red'
+                                                [ngClass]="{error:editForm.controls['packageName'].hasError('required')}"
+                                                *ngIf="editForm.controls['packageName'].hasError('required')">*Please
+                                                enter Packagename.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="w-100">
+                                        <h6>Price</h6>
+                                        <div class="d-flex justify-content-between">
+
+                                            <input type="text" class="form-control" formControlName="price"
+                                                placeholder="Please enter price" maxlength="256" minlength="2">
+                                            <div class="error-block"
+                                                *ngIf="editForm.controls['price'].dirty && editForm.controls['price'].invalid">
+                                                <span style='color:red'
+                                                    [ngClass]="{error:editForm.controls['price'].hasError('required')}"
+                                                    *ngIf="editForm.controls['price'].hasError('required')">*Please
+                                                    enter price.</span>
+                                            </div>
+                                            <h6 class="form-control max-WT-100 ml-2">
+                                                ₹
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="w-100">
+                                        <h6>Total Coins</h6>
+
+                                        <input type="text" class="form-control" formControlName="coins"
+                                            placeholder="Please enter coins" maxlength="256" minlength="2">
+                                        <div class="error-block"
+                                            *ngIf="editForm.controls['coins'].dirty && editForm.controls['coins'].invalid">
+                                            <span style='color:red'
+                                                [ngClass]="{error:editForm.controls['coins'].hasError('required')}"
+                                                *ngIf="editForm.controls['coins'].hasError('required')">*Please enter
+                                                Totalcoins.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <div class="btn-group">
+                                        <button (click)="update()" class="btn btn-info"
+                                            data-dismiss="modal">Update</button>
+                                        <button type="button" class="btn btn-danger"
+                                            data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

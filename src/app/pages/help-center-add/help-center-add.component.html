@@ -1,0 +1,127 @@
+
+<app-header-bar></app-header-bar>
+<app-side-menu></app-side-menu>
+  <main class="middle-content">
+      <div class="content-section">
+              <!-- <div class="page_title_block">
+                  <h1 class="page_title">User Management</h1>
+                </div> -->
+                <ol class="breadcrumb custom-breadcrum">
+                    <li class="breadcrumb-item active"><a routerLink="/help-center-management">Help Center Management </a></li>
+                    <li class="breadcrumb-item">Add</li>
+                  </ol>
+              <div class="order-view mt30 max-WT-800 mrgn-0-auto">
+              <div class="main-block-innner mb40 mt40">
+                  <div class="add-store-block input-style max-WT-700">
+                      <form [formGroup]="addForm">
+                      <div class="form-row">
+                          <div class="col-md-5">
+                              <div class="form-group">
+                                  <label class="pb-2">Category :</label>
+                                <select class="form-control" formControlName="category">
+                                 <option selected *ngFor="let categories of categoriesList" [value]="categories?.categoryName">{{categories?.categoryName}}</option>
+                                   </select>
+                                          <div *ngFor="let error of errorMessages.category">
+                                            <ng-container
+                                                *ngIf="category.hasError(error.type) && (category.dirty || category.touched)">
+                                                <small class="error-message">{{error.message}}</small>
+                                            </ng-container>
+                                        </div>
+                                  
+                              </div>
+                              <div class="form-group">
+                                  <label class="pb-2"> Name :</label>
+                                  <!-- <div class="">
+                                      <input type="text" class="form-control"> -->
+                                      <div class="col-md-14">
+                                        <input type="text" class="form-control" placeholder="Name" (keypress)="AlphabetOnly($event)"formControlName="name" maxlength="256"
+                                            minlength="2" />
+                                            <div *ngFor="let error of errorMessages.name">
+                                                <ng-container
+                                                    *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
+                                                    <small class="error-message">{{error.message}}</small>
+                                                </ng-container>
+                                            </div>
+                                    </div>
+                                  <!-- </div> -->
+                              </div>
+                              <div class="form-group">
+                                  <label class="pb-2">Contact :</label>
+                                  <div class="col-md-14">
+                                    <input type="text" class="form-control" placeholder="Contact" (keypress)="NumOnly($event)" formControlName="contact" maxlength="16"
+                                        />
+                                        <div *ngFor="let error of errorMessages.contact">
+                                            <ng-container
+                                                *ngIf="contact.hasError(error.type) && (contact.dirty || contact.touched)">
+                                                <small class="error-message">{{error.message}}</small>
+                                            </ng-container>
+                                        </div>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="pb-2">Location :</label>
+                                  <div class="col-md-14">
+                                    <input type="text" class="form-control" placeholder="serviceCenterLocation" formControlName="serviceCenterLocation" maxlength="256"
+                                        minlength="2" />
+                                        <div *ngFor="let error of errorMessages.serviceCenterLocation">
+                                            <ng-container
+                                                *ngIf="serviceCenterLocation.hasError(error.type) && (serviceCenterLocation.dirty || serviceCenterLocation.touched)">
+                                                <small class="error-message">{{error.message}}</small>
+                                            </ng-container>
+                                        </div>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="col-md-7">
+                              <div class="form-group">
+                                  <label class="pb-2">Description :</label>
+                                    <textarea class="form-control" rows="11" placeholder="Description" formControlName="description"></textarea>
+                                    <div *ngFor="let error of errorMessages.description">
+                                        <ng-container
+                                            *ngIf="description.hasError(error.type) && (description.dirty || description.touched)">
+                                            <small class="error-message">{{error.message}}</small>
+                                        </ng-container>
+                                    </div> 
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="text-center mt40">
+                            <button class="btn btn-large  max-WT-150 btn-green" [disabled]="addForm.invalid"
+                            (click)="addHelpCenter()">Add</button>
+                        <button style="margin-left: 21px; background: red; border: red" routerLink="/help-center-management" class="btn btn-large  max-WT-150 btn-green">Cancel</button>
+                      </div>
+                    </form>
+                  </div>
+              </div>
+          </div>
+
+          </div>
+      
+</main>
+
+
+<!-- signout_modal Start -->
+<div class="modal fade global-modal reset-modal" id="logout_modal">
+  <div class="modal-dialog max-WT-450">
+      <div class="modal-content">
+          <div>
+              <!-- Modal body -->
+              <div class="modal-body  text-center">
+                  <div class="row align-items-center modal_flax_height">
+                      <div class="col">
+                          <div class="box-title mb30 d-inline-block">
+                              <i class="fas fa-power-off off-icon"></i>
+                              <p class="mt40">Are you sure you want to logout?</p>
+                          </div>
+                          <div class="text-center">
+                              <a  routerLink="/login" class="btn btn-blue btn-noYes">YES</a>
+                              <button type="button" class="btn btn-red btn-noYes" data-dismiss="modal">CANCEL</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

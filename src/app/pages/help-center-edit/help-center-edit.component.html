@@ -1,0 +1,111 @@
+<app-header-bar></app-header-bar>
+<app-side-menu></app-side-menu>
+  <main class="middle-content">
+      <div class="content-section">
+              <!-- <div class="page_title_block">
+                  <h1 class="page_title">User Management</h1>
+                </div> -->
+                <ol class="breadcrumb custom-breadcrum">
+                    <li class="breadcrumb-item active"><a routerLink="/help-center-management">Help Center Management </a></li>
+                    <li class="breadcrumb-item">Edit</li>
+                  </ol>
+              <div class="order-view mt30 max-WT-800 mrgn-0-auto">
+                    <form  [formGroup]="editForm">
+              <div class="main-block-innner mb40 mt40">
+                  <div class="add-store-block input-style max-WT-700">
+                      <div class="row">
+                          <div class="col-md-5">
+                              <div class="form-group">
+                                  <label class="pb-2">Category :</label>
+                                  <div class="">
+                                          <select class="form-control">
+                                              <option>Mobile</option>
+                                              <option>Laptop</option>
+                                              <option>Home Appliances</option>
+                                          </select>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="pb-2"> Name :</label>
+                                  <div class="col-md-16">
+                                    <input type="text" class="form-control" formControlName="name" placeholder="Please enter name" maxlength="256"
+                                    minlength="2">
+                                    <div class="error-block" *ngIf="editForm.controls['name'].dirty && editForm.controls['name'].invalid">
+                                      <span style='color:red' [ngClass]="{error:editForm.controls['name'].hasError('required')}" *ngIf="editForm.controls['name'].hasError('required')">*Please enter name.</span>
+                                  </div>
+      
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="pb-2">Contact :</label>
+                                  <div class="col-md-16">
+                                    <input type="text" class="form-control" formControlName="contact" placeholder="Please enter contact" maxlength="256"
+                                    minlength="2">
+                                    <div class="error-block" *ngIf="editForm.controls['contact'].dirty && editForm.controls['contact'].invalid">
+                                      <span style='color:red' [ngClass]="{error:editForm.controls['contact'].hasError('required')}" *ngIf="editForm.controls['contact'].hasError('required')">*Please enter contact.</span>
+                                  </div>
+      
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="pb-2">Location :</label>
+                                  <div class="col-md-16">
+                                    <input type="text" class="form-control" formControlName="serviceCenterLocation" placeholder="Please enter location" maxlength="256"
+                                    minlength="2">
+                                    <div class="error-block" *ngIf="editForm.controls['serviceCenterLocation'].dirty && editForm.controls['serviceCenterLocation'].invalid">
+                                      <span style='color:red' [ngClass]="{error:editForm.controls['serviceCenterLocation'].hasError('required')}" *ngIf="editForm.controls['serviceCenterLocation'].hasError('required')">*Please enter location.</span>
+                                  </div>
+      
+                                </div>
+                              </div>
+                          </div>
+                          <div class="col-md-7">
+                              <div class="form-group">
+                                  <label class="pb-2">Description :</label>
+                                  <div class="">
+                                    
+                                      <textarea class="form-control" rows="11" placeholder="Description" [formControl]="editForm.controls['description']"></textarea>
+                                  
+      
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="text-center mt40">
+                          <a  (click)="update()" class="btn btn-large  max-WT-150 btn-green">Update</a>
+                          <a  routerLink="/help-center-management" class="btn btn-large  max-WT-150 btn-red ml-2">Cancel</a>
+                      </div>
+                  </div>
+              </div>
+            </form>
+          </div>
+
+          </div>
+     
+</main>
+
+<!-- signout_modal Start -->
+<div class="modal fade global-modal reset-modal" id="logout_modal">
+  <div class="modal-dialog max-WT-450">
+      <div class="modal-content">
+          <div>
+              <!-- Modal body -->
+              <div class="modal-body  text-center">
+                  <div class="row align-items-center modal_flax_height">
+                      <div class="col">
+                          <div class="box-title mb30 d-inline-block">
+                              <i class="fas fa-power-off off-icon"></i>
+                              <p class="mt40">Are you sure you want to logout?</p>
+                          </div>
+                          <div class="text-center">
+                              <a routerLink="/login" class="btn btn-blue btn-noYes">YES</a>
+                              <button type="button" class="btn btn-red btn-noYes" data-dismiss="modal">CANCEL</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

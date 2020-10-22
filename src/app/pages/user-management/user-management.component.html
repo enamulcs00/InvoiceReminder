@@ -1,0 +1,197 @@
+<main class="middle-content">
+    <app-side-menu></app-side-menu>
+    <app-header-bar></app-header-bar>
+    <div class="content-section">
+        <div class="page_title_block">
+            <h1 class="page_title">User Management</h1>
+        </div>
+        <div class="outer-box">
+            <div class="search-block d-flex align-items-center mb20 mt20">
+                <div class="d-flex align-items-center justify-content-between w-100">
+                    <label class="pr-4 font16 mb-0">User List :</label>
+                    <div class="filter_search d-block mr-0">
+                        <div class="input-group filter_search_group">
+                            <input type="text" class="form-control" [(ngModel)]="searchkey" name="searchkey"
+                                (keyup)="search(1)" placeholder="Search by name/email/mobile number">
+                            <div class="input-group-append">
+                                <button class="btn btn_search_group" type="button"><img src="assets/img/icon-search.png"
+                                        alt="Search"></button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="">
+                        <select class="form-control" (change)="filters()" [(ngModel)]=str style="width: 100px;">
+                            <option value='All'>All</option>
+                            <option value='ACTIVE'>Active</option>
+                            <option value='BLOCK'>Block</option>
+                        </select>
+                    </div>
+
+
+
+
+
+                    <!-- <input debounce [delay]="700" (func)="myDebouncedFunction()" [(ngModel)]="..." name="Debounce input" class="form-control input-sm"> -->
+                    <img src="assets/img/import_icon.png" alt=""
+                        style="height: 30px; width: 30px;cursor: pointer;margin-left: 85px;"
+                        (click)="exportAsXLSX()">Export
+                    <div class="ml-auto">
+                        <a routerLink="/add-user" class="link font17"><i class="fas fa-plus-circle mr-1"></i> Add
+                            user</a>
+                    </div>
+                </div>
+            </div>
+            <div class="global-table no-radius p0">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-edit">
+                        <thead>
+
+                            <tr class="no_wrap_th">
+                                <th>S.No.</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Mobile Number</th>
+                                <th>Referral Code</th>
+                                <th>SocialType</th>
+                                <th>Status</th>
+                                <th class="action_td_btn3">Action</th>
+                            </tr>
+
+
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let item of userList | paginate :{itemsPerPage:user?.paginationData?.limit , currentPage:user?.paginationData?.page, totalItems: user?.paginationData?.total};index as i">
+                                <!-- <tr *ngFor="let item of user | paginate :{itemsPerPage : 10, currentPage: pageNo, totalItems: paginationData.total };index as i">"> -->
+                                <td>{{(i+1)+ srNo}}</td>
+                                <td>{{item.fullName}}</td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.mobileNumber}}</td>
+                                <td>{{item.referralCode}}</td>
+                                <td>{{item.socialType}}</td>
+                                <td>{{item.status}}</td>
+                                <td class="action_td_btn3">
+                                    <!-- routerLink="/manage-records"  -->
+                                    <a (click)="view(item?._id)" class="view-icon" style="cursor:pointer"> <i
+                                            class="fa fa-eye"></i></a>
+                                    <a (click)="edit(item?._id)" class="edit-field" style="cursor:pointer"><i
+                                            class="fa fa-edit"></i></a>
+                                    <a (click)="deleteUserFunc(item._id)" data-backdrop="static" data-toggle="modal"
+                                        class="view-icon" style="cursor:pointer"> <i class="fa fa-trash"></i></a>
+                                    <label class="switch">
+                                        <input type="checkbox" (click)="sliderRound(item._id,item.status)"
+                                            [checked]="item.status == 'ACTIVE'">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr *ngIf="user == '' ">
+                                <span>No record found</span>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="custom-pagination mt30 text-center">
+                    <nav aria-label="Page navigation example">
+                        <!-- *ngIf="user?.paginationData?.total >
+                            user?.paginationData?.limit" -->
+                        <div>
+                            <pagination-controls (pageChange)="search($event)"></pagination-controls>
+                        </div>
+
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+
+
+<div class="modal fade global-modal reset-modal" id="logout_modal">
+    <div class="modal-dialog max-WT-450">
+        <div class="modal-content">
+            <div>
+                <!-- Modal body -->
+                <div class="modal-body  text-center">
+                    <div class="row align-items-center modal_flax_height">
+                        <div class="col">
+                            <div class="box-title mb30 d-inline-block">
+                                <i class="fas fa-power-off off-icon"></i>
+                                <p class="mt40">Are you sure you want to logout?</p>
+                            </div>
+                            <div class="text-center">
+                                <a (click)="logoutFunc()" class="btn btn-blue btn-noYes">YES</a>
+                                <button type="button" class="btn btn-red btn-noYes" data-dismiss="modal">CANCEL</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                <div><h5 class="modal-title" id="exampleModalLabel">Delete</h5></div>
+              
+              <button type="button" class="close no-padding" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" style="text-align: center;font-size: 18px;">
+                    <p>Are you sure you want to delete this user?</p>
+            </div>
+            <div class="modal-footer" style="justify-content: center;">
+                <a type="button" (click)="deleteUser()" class="btn btn-primary">Delete</a>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+              
+              
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+
+
+
+
+<div class="modal fade global-modal reset-modal" id="delete">
+    <div class="modal-dialog max-WT-450">
+        <form class="change_password">
+            <div class="modal-content">
+                <div class="inner_border_area">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <div class="modal-body">
+                        <div class="text-center modal_flax_height d-flex align-items-center justify-content-center">
+                            <div class="w-100">
+                                <p>Are you sure you want to delete this user?</p>
+                                <div class="btn-group">
+                                    <button type="button" (click)="deleteUser()" class="btn btn-info"
+                                        data-dismiss="modal">Delete</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

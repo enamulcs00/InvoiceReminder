@@ -1,0 +1,259 @@
+
+
+  <aside class="sidebar" *ngIf="!flag">
+      <div class="sidebar-scroller">
+          <!--Accordion Start -->
+          <div  class="sidebar-menu">
+              <!-- menu-box Start -->
+              <div class="menu-box">
+                  <div class="card-header clearfix" id="headingOne">
+                      
+                    <!-- <li><a [ngClass]="{'active': isActive == 'dashboard'}" (click)="tabManag('dashboard')"><i class="fa fa-users"></i>USER MANAGEMENT</a></li> -->
+
+                      <a class="side_menu" [ngClass]="{'active': isActive == 'dashboard'}" routerLink="/dashboard">
+                          <span class="side_menu_icon"> 
+                              <img src="../assets/img/dashboard-icon.png" alt="icon"/>
+                          </span>
+                          <span class="side_page_name">Dashboard</span>
+                      </a>
+                     
+                      <a class="side_menu" [ngClass]="{'active': isActive == 'user-management' || isActive == 'edit-user-detail' || isActive == 'add-user'}" routerLink="/user-management">
+                        <span class="side_menu_icon">                      
+                                 <img src="../assets/img/user.png" alt="icon"/>
+                        </span>
+                        <span class="side_page_name">User Management</span>
+                    </a>
+                 
+                    <a class="side_menu" [ngClass]="{'active': (isActive == 'subadmin-management' || isActive == 'edit-subadmin' || isActive == 'add-subadmin')}" routerLink="/subadmin-management">
+                        <span class="side_menu_icon">                         <i class="far fa-user"></i>
+                        </span>
+                        <span class="side_page_name">Sub-Admin Management</span>
+                    </a>
+                 
+                    <!-- <a class="side_menu" [ngClass]="{'active': isActive == 'manage-records'}" style="cursor:pointer;color:#FFF">
+                        <span class="side_menu_icon">
+                          <i class="fas fa-bars"></i>
+                        </span>
+                        <span class="side_page_name">Manage Records</span>
+                    </a> -->
+
+                    <a class="side_menu" [ngClass]="{'active': isActive == 'category-management'}" routerLink="/category-management">
+                        <span class="side_menu_icon">
+                            <i class="far fa-list-alt"></i>
+                        </span>
+                        <span class="side_page_name">Category Management</span>
+                    </a>
+
+                    <a class="side_menu" [ngClass]="{'active': isActive == 'package-management'}" routerLink="/package-management">
+                        <span class="side_menu_icon">
+                          <i class="fas fa-cubes"></i>
+                        </span>
+                        <span class="side_page_name">Package Management</span>
+                    </a>
+
+                    <a class="side_menu" [ngClass]="{'active': isActive == 'offer-promo-management'}" routerLink="/offer-promo-management">
+                        <span class="side_menu_icon">
+                            <i class="fas fa-phone"></i>
+                        </span>
+                        <span class="side_page_name">Offer & Promotion Management</span>
+                    </a>
+
+                    <a class="side_menu" [ngClass]="{'active': isActive == 'transaction-management'}" routerLink="/transaction-management">
+                        <span class="side_menu_icon">
+                           <i class="fas fa-exchange-alt"></i>
+                        </span>
+                        <span class="side_page_name">Transaction Management</span>
+                    </a>
+
+                    <a class="side_menu" [ngClass]="{'active': isActive == 'help-center-management'|| isActive == 'help-center-add'|| isActive == 'help-center-edit'}" routerLink="/help-center-management">
+                        <span class="side_menu_icon">
+                           <i class="fab fa-hire-a-helper"></i>
+                        </span>
+                        <span class="side_page_name">Help Center Management</span>
+                    </a>
+
+                    <a class="side_menu" [ngClass]="{'active': isActive == 'static-content-management'||isActive == 'terms-view' || isActive == 'privacy-view' || isActive == 'terms-edit' || isActive == 'privacy-view' || isActive == 'privacy-edit'}" routerLink="/static-content-management">
+                        <span class="side_menu_icon">
+                            <img src="../assets/img/copy-content.png" alt="icon"/>
+                        </span>
+                        <span class="side_page_name">Static Content Management</span>
+                    </a>
+
+                    <a class="side_menu" data-toggle="logout_modal" style="cursor:pointer;color:#FFF"> 
+                        <span class="side_menu_icon">
+                            <img src="../assets/img/setting-icon.png" alt="icon"/>
+                        </span>
+                        <span class="side_page_name" (click)="logoutModal()">Logout</span>
+                    </a>
+
+                 
+                    </div>
+              </div>
+
+
+
+
+           
+
+
+              <!-- <div class="modal fade global-modal reset-modal" id="logout_modal">
+                <div class="modal-dialog max-WT-450">
+                    <div class="modal-content">
+                        <div>
+                            <div class="modal-body  text-center">
+                                <div class="row align-items-center modal_flax_height">
+                                    <div class="col">
+                                        <div class="box-title mb30 d-inline-block">
+                                            <i class="fas fa-power-off off-icon"></i>
+                                            <p class="mt40">Are you sure you want to logout?</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <a (click) = "logoutFunc()" class="btn btn-blue btn-noYes">YES</a>
+                                            <button type="button" class="btn btn-red btn-noYes" data-dismiss="modal">CANCEL</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div> -->
+
+
+
+               <!-- menu-box End -->
+          </div>
+          <!--Accordion End -->
+      </div>
+  </aside>
+
+<!------------------------------------------------------------------ SUBADMIN----------------------------------------------------------------------->
+
+  <aside class="sidebar" *ngIf="flag">
+    <div class="sidebar-scroller">
+        <!--Accordion Start -->
+        <div  class="sidebar-menu" >
+            <!-- menu-box Start -->
+            <div class="menu-box">
+                <div class="card-header clearfix" id="headingOne">
+                    
+                  <!-- <li><a [ngClass]="{'active': isActive == 'dashboard'}" (click)="tabManag('dashboard')"><i class="fa fa-users"></i>USER MANAGEMENT</a></li> -->
+
+                    <a class="side_menu" [ngClass]="{'active': isActive == 'dashboard'}" routerLink="/dashboard" *ngIf="per.dashboard==true">
+                        <span class="side_menu_icon"> 
+                            <img src="../assets/img/dashboard-icon.png" alt="icon"/>
+                        </span>
+                        <span class="side_page_name" >Dashboard</span>
+                    </a>
+                   
+                    <a class="side_menu"  [ngClass]="{'active': isActive == 'user-management' ||  isActive == 'edit-user-detail' || isActive == 'add-user'}" routerLink="/user-management" *ngIf="per.userManagement==true">
+                      <span class="side_menu_icon">                      
+                               <img src="../assets/img/user.png" alt="icon"/>
+                      </span>
+                      <span class="side_page_name">User Management</span>
+                  </a>
+               
+                  <a class="side_menu"  [ngClass]="{'active': isActive == 'subadmin-management' || isActive == 'edit-subadmin' || isActive == 'add-subadmin'}" routerLink="/subadmin-management" *ngIf="per.subAdminManagement==true">
+                      <span class="side_menu_icon">                         <i class="far fa-user"></i>
+                      </span>
+                      <span class="side_page_name">Sub-Admin Management</span>
+                  </a>
+               
+                  <a class="side_menu" [ngClass]="{'active': isActive == 'manage-records'}" *ngIf="per.manageRecords==true" style="cursor:pointer;color:#FFF">
+                      <span class="side_menu_icon">
+                        <i class="fas fa-bars"></i>
+                      </span>
+                      <span class="side_page_name">Manage Records</span>
+                  </a>
+
+                  <a class="side_menu" [ngClass]="{'active': isActive == 'category-management'}" routerLink="/category-management" *ngIf="per.categoryManagement==true">
+                      <span class="side_menu_icon">
+                          <i class="far fa-list-alt"></i>
+                      </span>
+                      <span class="side_page_name">Category Management</span>
+                  </a>
+
+                  <a class="side_menu" [ngClass]="{'active': isActive == 'package-management'}" routerLink="/package-management" *ngIf="per.packageManagement==true">
+                      <span class="side_menu_icon">
+                        <i class="fas fa-cubes"></i>
+                      </span>
+                      <span class="side_page_name">Package Management</span>
+                  </a>
+
+                  <a class="side_menu" [ngClass]="{'active': isActive == 'offer-promo-management'}" routerLink="/offer-promo-management" *ngIf="per.offerAndPromotionManagement==true">
+                      <span class="side_menu_icon">
+                          <i class="fas fa-phone"></i>
+                      </span>
+                      <span class="side_page_name">Offer & Promotion Management</span>
+                  </a>
+
+                  <a class="side_menu" [ngClass]="{'active': isActive == 'transaction-management'}" routerLink="/transaction-management" *ngIf="per.transactionManagement==true">
+                      <span class="side_menu_icon">
+                         <i class="fas fa-exchange-alt"></i>
+                      </span>
+                      <span class="side_page_name">Transaction Management</span>
+                  </a>
+
+                  <a class="side_menu" [ngClass]="{'active': isActive == 'help-center-management'}" routerLink="/help-center-management" *ngIf="per.helpCenterManagement==true">
+                      <span class="side_menu_icon">
+                         <i class="fab fa-hire-a-helper"></i>
+                      </span>
+                      <span class="side_page_name">Help Center Management</span>
+                  </a>
+
+                  <a class="side_menu" [ngClass]="{'active': isActive == 'static-content-management' ||isActive == 'terms-view' || isActive == 'privacy-view' || isActive == 'terms-edit' || isActive == 'privacy-view' || isActive == 'privacy-edit'}" routerLink="/static-content-management" *ngIf="per.staticContentManagement==true">
+                      <span class="side_menu_icon">
+                          <img src="../assets/img/copy-content.png" alt="icon"/>
+                      </span>
+                      <span class="side_page_name">Static Content Management</span>
+                  </a>
+
+                  <a class="side_menu" data-toggle="logout_modal" style="cursor:pointer;color:#FFF"> 
+                      <span class="side_menu_icon">
+                          <img src="../assets/img/setting-icon.png" alt="icon"/>
+                      </span>
+                      <span class="side_page_name" (click)="logoutModal()">Logout</span>
+                  </a>
+
+               
+                  </div>
+            </div>
+
+
+
+
+         
+
+
+            <!-- <div class="modal fade global-modal reset-modal" id="logout_modal">
+              <div class="modal-dialog max-WT-450">
+                  <div class="modal-content">
+                      <div>
+                          <div class="modal-body  text-center">
+                              <div class="row align-items-center modal_flax_height">
+                                  <div class="col">
+                                      <div class="box-title mb30 d-inline-block">
+                                          <i class="fas fa-power-off off-icon"></i>
+                                          <p class="mt40">Are you sure you want to logout?</p>
+                                      </div>
+                                      <div class="text-center">
+                                          <a (click) = "logoutFunc()" class="btn btn-blue btn-noYes">YES</a>
+                                          <button type="button" class="btn btn-red btn-noYes" data-dismiss="modal">CANCEL</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div> -->
+
+
+
+             <!-- menu-box End -->
+        </div>
+        <!--Accordion End -->
+    </div>
+</aside>
+ 
+  

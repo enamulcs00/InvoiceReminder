@@ -1,0 +1,115 @@
+<app-side-menu></app-side-menu>
+<app-header-bar></app-header-bar>
+<main class="middle-content">
+    <form [formGroup]="offerForm">
+        <div class="content-section">
+            <div class="page_title_block">
+                <h1 class="page_title">Add Offers</h1>
+            </div>
+            <div class="order-view mt30 max-WT-600 mrgn-0-auto">
+                <div class="main-block-innner mb40 mt40">
+                    <div class="add-store-block input-style max-WT-400">
+                        <div class="mb-4 text-right">
+                            <label class="mr-3">Add Photo : </label>
+                            <div class="file btn btn-upload btn-primary">
+                                Upload Image
+                                <input type="file" name="image" accept="image/*" formControlName="image"
+                                    (change)="onSelectFile($event)" multiple />
+                            </div>
+                            <div class="two-images">
+                                <div class="d-flex text-center mb-4 justify-content-between flex-wrap"
+                                    *ngFor="let data of urls">
+
+                                    <img src={{data}} style="max-width:200px;height:130px;margin:5px;">
+                                    <!--  <img src="../assets/img/dummy.png" style="max-width:200px;height:130px;margin:5px;"> -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="d-block pb-2"> Offer Tagline :</label>
+                            <div class="">
+                                <input type="text" class="form-control" formControlName="offerTagline">
+                            </div>
+                            <div
+                                *ngIf="offerForm.get('offerTagline').errors && offerForm.get('offerTagline').touched || offerForm.get('offerTagline').dirty">
+                                <div *ngIf="offerForm.controls['offerTagline'].hasError('required')"><span
+                                        style="color:red">Offer taGline is required</span></div>
+                                <div *ngIf="offerForm.controls['offerTagline'].hasError('maxlength')"><span
+                                        style="color:red">Offer tagline must be maxLength 20</span></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="d-block pb-2">Offer Code :</label>
+                            <button  class="btn btn-blue" (click)="generateCode()">generate code</button> <hr>
+                            <div class="max-WT-200">
+                                <input type="text" class="form-control" formControlName="password" placeholder="Your code is Here" readonly>
+
+                            </div>
+                            <div
+                                *ngIf="offerForm.get('password').errors && offerForm.get('password').touched || offerForm.get('offerTagline').dirty">
+                                <div *ngIf="offerForm.controls['password'].hasError('required')"><span
+                                        style="color:red">*Click on generate Code.</span></div>
+                                <div *ngIf="offerForm.controls['password'].hasError('maxlength')"><span
+                                        style="color:red">Offer Code must be maxLength 6</span></div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label class="d-block pb-2">Start Date :</label>
+                                <div class="">
+                                    <input type="date" class="form-control " name="formdate" id="datepicker" [(ngModel)]="stardate"
+                                    formControlName="startDate" (change)="formdate()" placeholder="xx-xx-xxx"      
+                                        (ngModelChange)="changed($event)" min="{{todayDate | date:'yyyy-MM-dd'}}">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label class="d-block pb-2">End Date :</label>
+                                <div class="">
+                                    <input type="date" class="form-control " name="todate" formControlName="endDate" [readOnly]="StartDateFirst"
+                                        (change)="todate()" placeholder="xx-xx-xxx" (ngModelChange)="changed($event)"
+                                        min="{{stardate | date:'yyyy-MM-dd'}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt40">
+                            <button type="button" class="btn btn-large  max-WT-150 btn-green mr-2"
+                                (click)="addOffer()" [disabled]="offerForm.invalid">Add Offers </button>
+                            <button type="button" class="btn btn-large  max-WT-150 btn-green mr-2"
+                                (click)="backBtn()">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+
+</main>
+
+
+<!-- signout_modal Start -->
+<div class="modal fade global-modal reset-modal" id="logout_modal">
+    <div class="modal-dialog max-WT-450">
+        <div class="modal-content">
+            <div>
+                <!-- Modal body -->
+                <div class="modal-body  text-center">
+                    <div class="row align-items-center modal_flax_height">
+                        <div class="col">
+                            <div class="box-title mb30 d-inline-block">
+                                <i class="fas fa-power-off off-icon"></i>
+                                <p class="mt40">Are you sure you want to logout?</p>
+                            </div>
+                            <div class="text-center">
+                                <a routerLink="/login" class="btn btn-blue btn-noYes">YES</a>
+                                <button type="button" class="btn btn-red btn-noYes" data-dismiss="modal">CANCEL</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

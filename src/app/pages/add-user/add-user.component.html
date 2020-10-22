@@ -1,0 +1,139 @@
+<app-header-bar></app-header-bar>
+<app-side-menu></app-side-menu>
+<main class="middle-content">
+    <div class="content-section">
+        <!-- <div class="page_title_block">
+                  <h1 class="page_title">User Management</h1>
+                </div> -->
+        <ol class="breadcrumb custom-breadcrum">
+            <li class="breadcrumb-item active">
+                <a routerLink="/user-management">User Management </a>
+            </li>
+            <li class="breadcrumb-item">Add User</li>
+        </ol>
+        <div class="order-view mt30 max-WT-700 mrgn-0-auto">
+
+            <form [formGroup]="addForm">
+                <div class="main-block-innner mb40 mt40">
+                    <div class="add-store-block input-style">
+                        <div class="user-profile mb-5">
+                            <div class="image-box">
+                                <img src="{{activeImage}}">
+                                <label class="upload-label">
+                                    <input type="file" name="" accept="image/jpeg,image/jpg,image/png" (change)="selectImages($event)" style="cursor:pointer">
+                                    <i class="fas fa-camera"></i>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group row align-items-center">
+                            <label class="col-md-4">Full name :</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="Full name" [formControl]="addForm.controls['fullName']" maxlength="256"
+                                    minlength="2" />
+                                <div class="error-block" *ngIf="addForm.controls['fullName'].dirty && addForm.controls['fullName'].invalid">
+                                    <span style='color:red' [ngClass]="{error:addForm.controls['fullName'].hasError('required')}" *ngIf="addForm.controls['fullName'].hasError('required')">*Please enter user full name.</span>
+                                    <span style='color:red' [ngClass]="{error: addForm.controls['fullName'].hasError('pattern')}" *ngIf="addForm.controls['fullName'].hasError('pattern')">*Full name should be characters only.</span>
+                                    <span style='color:red' [ngClass]="{error: addForm.controls['fullName'].hasError('maxlength') && addForm.controls['fullName'].dirty}"
+                                        *ngIf="addForm.controls['fullName'].hasError('maxlength') && ! addForm.controls['fullName'].hasError('pattern')">*Full name should be maximum 256 characters.</span>
+                                    <span style='color:red' [ngClass]="{error: addForm.controls['fullName'].hasError('minlength') && addForm.controls['fullName'].dirty}"
+                                        *ngIf="addForm.controls['fullName'].hasError('minlength') && ! addForm.controls['fullName'].hasError('pattern')">*Full name should be atleast 2 characters.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row align-items-center">
+                            <label class="col-md-4">Email :</label>
+                            <div class="col-md-8">
+
+                                <input type="text" class="form-control" placeholder="Email" [formControl]="addForm.controls['email']" maxlength="50" />
+                                <div class="error-block" *ngIf="addForm.controls['email'].dirty && addForm.controls['email'].invalid">
+                                    <span style='color:red' [ngClass]="{error:addForm.controls['email'].hasError('required')}" *ngIf="addForm.controls['email'].hasError('required')">*Please enter an email.</span>
+                                    <span style='color:red' [ngClass]="{error: addForm.controls['email'].hasError('pattern')}" *ngIf="addForm.controls['email'].hasError('pattern')">*Please enter valid email.</span>
+                                    <span style='color:red' [ngClass]="{error: addForm.controls['email'].hasError('maxlength') && addForm.controls['email'].dirty}"
+                                        *ngIf="addForm.controls['email'].hasError('maxlength') && ! addForm.controls['email'].hasError('pattern')">*Please enter valid email.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row align-items-center mt20">
+                            <label class="col-md-4">Mobile number :</label>
+                            <div class="col-md-8">
+                                <div class="d-flex justify-content-between">
+                                    <select style="width: 102px; " class="form-control mr-2"  [formControl]="addForm.controls['code']" value="+91 India" >
+                                        <option selected>{{india}}</option>
+                                        <option *ngFor="let item of countryList"  value="{{item?.phone_code}}">{{item?.phone_code }} {{item?.name}}</option>
+                                    </select>
+                                 <input type="text" placeholder= "Mobile number" n class="form-control" [formControl]="addForm.controls['mobile']"  maxlength="16">
+                                </div>
+                                <div class="errMsg" *ngIf="addForm.controls['mobile'].dirty && addForm.controls['mobile'].invalid"> 
+                                        <span style='color:red' [ngClass]="{error:addForm.controls['mobile'].hasError('pattern')}" *ngIf="addForm.controls['mobile'].hasError('pattern')">*Please provide valid mobile number.</span>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                            <label class="col-md-4">Password :</label>
+                            <div class="col-md-8">
+                                <input type="password" class="form-control " [formControl]='addForm.controls["password"]' maxlength="16" placeholder="Password"
+                                />
+                                <div class="error-block" *ngIf="addForm.controls['password'].dirty && addForm.controls['password'].invalid">
+
+                                    <span style='color:red' [ngClass]="{error:addForm.controls['password'].hasError('required')}" *ngIf="addForm.controls['password'].hasError('required')">*Please enter password.</span>
+                                    <!-- <span style='color:red' [ngClass]="{error:addForm.controls['password'].hasError('minlength')}" *ngIf="addForm.controls['password'].hasError('minlength')">*Password must be between 8 to 16 characters</span>
+
+                                    <span style='color:red' [ngClass]="{error:addForm.controls['password'].hasError('maxlength')}" *ngIf="addForm.controls['password'].hasError('maxlength')">*Password must be between 8 to 16 characters</span> -->
+
+                                    <span style='color:red' [ngClass]="{error:addForm.controls['password'].hasError('pattern')}" *ngIf="addForm.controls['password'].hasError('pattern')">*Password must be between 8 to 16 characters and contain atleast one special character,one digit and one uppercase letter</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                            <label class="col-md-4">Confirm password :</label>
+                            <div class="col-md-8">
+                                <input type="password" class="form-control " [formControl]='addForm.controls["ConPassword"]' placeholder="Confirm password"
+                                />
+                                <div class="error-block" *ngIf="addForm.controls['ConPassword'].dirty">
+                                    <span style='color:red' *ngIf="addForm.controls['ConPassword'].value != addForm.controls['password'].value">*Password didn't match. Try again.</span>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt40">
+                            <button class="btn btn-large  max-WT-150 btn-green" [disabled]="addForm.invalid || (addForm.controls['ConPassword'].value != addForm.controls['password'].value)"
+                                (click)="addUser()">Add user</button>
+                            <button style="margin-left: 21px; background: red; border: red" routerLink="/user-management" class="btn btn-large  max-WT-150 btn-green">Cancel</button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+
+<!-- signout_modal Start -->
+<div class="modal fade global-modal reset-modal" id="logout_modal">
+    <div class="modal-dialog max-WT-450">
+        <div class="modal-content">
+            <div>
+                <!-- Modal body -->
+                <div class="modal-body  text-center">
+                    <div class="row align-items-center modal_flax_height">
+                        <div class="col">
+                            <div class="box-title mb30 d-inline-block">
+                                <i class="fas fa-power-off off-icon"></i>
+                                <p class="mt40">Are you sure you want to logout?</p>
+                            </div>
+                            <div class="text-center">
+                                <a routerLink="/login" class="btn btn-blue btn-noYes">YES</a>
+                                <button type="button" class="btn btn-red btn-noYes" data-dismiss="modal">CANCEL</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,399 @@
+<app-side-menu></app-side-menu>
+<app-header-bar></app-header-bar>
+<main class="middle-content">
+    <div class="content-section">
+        <div class="page_title_block">
+            <h1 class="page_title">Manage Records</h1>
+        </div>
+        <div class="order-view mb20 max-WT-600 mrgn-0-auto">
+            <div class="main-block-innner">
+                <div class="add-store-block input-style mw-100">
+                    <div class="user-profile mb-4">
+                        <div class="image-box">
+                            <img src={{user[0]?.profilePic}}>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <!-- <div class="row"> -->
+                                <!-- <div class="col-md-6"> -->
+                                    <div class="row">
+                                        <div class="col-md-5" style="text-align:right">
+                                            <label class=" text-grey">Full Name :</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p style="word-break: break-all!important;">{{user[0]?.fullName}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-5" style="text-align:left">
+                                                <label class=" text-grey">Email :</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p style="word-break: break-all!important;">{{user[0]?.email}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-5" style="text-align:right">
+                                            <label class=" text-grey">Mobile No. :</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p style="word-break: break-all!important;">{{user[0]?.countryCode}}
+                                                {{user[0]?.mobileNumber}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-5" style="text-align:left">
+                                                <label class=" text-grey">Referral Code :</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p style="word-break: break-all!important;">{{user[0]?.referralCode}}</p>
+                                            </div>
+                                        </div>
+                                    <!-- </div> -->
+                            </div>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fieldset-block">
+            <fieldset class="global-fieldset">
+                <legend>Records</legend>
+                <div class="global-table no-radius  pLR10 mt-2">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-edit">
+                            <thead>
+                                <tr class="no_wrap_th">
+                                    <th>Invoice </th>
+                                    <th>Category</th>
+                                    <th>Doc Type</th>
+                                    <th>Total Docs</th>
+                                    <th class="w-150">Name</th>
+                                    <th class="w-150">Company</th>
+                                    <th>Purchased On</th>
+                                    <th>Expires On</th>
+                                    <th>Warranty (Months)</th>
+                                    <th class="action_td_btn3">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- <tr>
+                                    <td>23</td>
+                                    <td>Mobile</td>
+                                    <td>Invoice</td>
+                                    <td>10</td>
+                                    <td>iPhone X</td>
+                                    <td>iPhone</td>
+                                    <td>12/10/2018</td>
+                                    <td>12/10/2019</td>
+                                    <td>12</td>
+                                    <td class="action_td_btn3">
+                                        <a href="javascript:void(0)" class="view-icon"> <i class="fa fa-eye"></i></a>
+                                        <a href="#delete" data-toggle="modal" class="view-icon"> <i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>23</td>
+                                    <td>Mobile</td>
+                                    <td>Invoice</td>
+                                    <td>10</td>
+                                    <td>iPhone X</td>
+                                    <td>iPhone</td>
+                                    <td>12/10/2018</td>
+                                    <td>12/10/2019</td>
+                                    <td>12</td>
+                                    <td class="action_td_btn3">
+                                        <a href="javascript:void(0)" class="view-icon"> <i class="fa fa-eye"></i></a>
+                                        <a href="#delete" data-toggle="modal" class="view-icon"> <i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>23</td>
+                                    <td>Mobile</td>
+                                    <td>Invoice</td>
+                                    <td>10</td>
+                                    <td>iPhone X</td>
+                                    <td>iPhone</td>
+                                    <td>12/10/2018</td>
+                                    <td>12/10/2019</td>
+                                    <td>12</td>
+                                    <td class="action_td_btn3">
+                                        <a href="javascript:void(0)" class="view-icon"> <i class="fa fa-eye"></i></a>
+                                        <a href="#delete" data-toggle="modal" class="view-icon"> <i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>23</td>
+                                    <td>Mobile</td>
+                                    <td>Invoice</td>
+                                    <td>10</td>
+                                    <td>iPhone X</td>
+                                    <td>iPhone</td>
+                                    <td>12/10/2018</td>
+                                    <td>12/10/2019</td>
+                                    <td>12</td>
+                                    <td class="action_td_btn3">
+                                        <a href="javascript:void(0)" class="view-icon"> <i class="fa fa-eye"></i></a>
+                                        <a href="#delete" data-toggle="modal" class="view-icon"> <i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>23</td>
+                                    <td>Mobile</td>
+                                    <td>Invoice</td>
+                                    <td>10</td>
+                                    <td>iPhone X</td>
+                                    <td>iPhone</td>
+                                    <td>12/10/2018</td>
+                                    <td>12/10/2019</td>
+                                    <td>12</td>
+                                    <td class="action_td_btn3">
+                                        <a href="javascript:void(0)" class="view-icon"> <i class="fa fa-eye"></i></a>
+                                        <a href="#delete" data-toggle="modal" class="view-icon"> <i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>23</td>
+                                    <td>Mobile</td>
+                                    <td>Invoice</td>
+                                    <td>10</td>
+                                    <td>iPhone X</td>
+                                    <td>iPhone</td>
+                                    <td>12/10/2018</td>
+                                    <td>12/10/2019</td>
+                                    <td>12</td>
+                                    <td class="action_td_btn3">
+                                        <a href="javascript:void(0)" class="view-icon"> <i class="fa fa-eye"></i></a>
+                                        <a href="#delete" data-toggle="modal" class="view-icon"> <i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>23</td>
+                                    <td>Mobile</td>
+                                    <td>Invoice</td>
+                                    <td>10</td>
+                                    <td>iPhone X</td>
+                                    <td>iPhone</td>
+                                    <td>12/10/2018</td>
+                                    <td>12/10/2019</td>
+                                    <td>12</td>
+                                    <td class="action_td_btn3">
+                                        <a href="javascript:void(0)" class="view-icon"> <i class="fa fa-eye"></i></a>
+                                        <a href="#delete" data-toggle="modal" class="view-icon"> <i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr> -->
+                                <tr *ngFor="let data of userrecorddata?.result | paginate :{itemsPerPage:userrecorddata?.paginationData?.limit , currentPage:userrecorddata?.paginationData?.page, totalItems: userrecorddata?.paginationData?.total};index as i">
+                                    <td>{{data?.referenceNumber}}</td>
+                                    <td>{{data?.categoryName}}</td>
+                                    <td >{{data?.documentTypeName }}</td>
+                                    <td>{{data?.imageURLs.length }}</td>
+                                    <td>{{data?.documentName}}</td>
+                                    <td>{{data?.companyName}}</td>
+                                    <td>{{data?.purchaseIssueDate}}</td>
+                                    <td>12/10/2019</td>
+                                    <td>12</td>
+                                    <td class="action_td_btn3">
+                                        <a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModalCenter" (click)="view(data)" class="view-icon"> <i class="fa fa-eye"></i></a>
+                                        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                            Launch demo modal
+                                          </button> -->
+                                          
+                                          <!-- Modal -->
+                                          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLongTitle">Manage Record Details</h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <!-- <span aria-hidden="true">&times;</span> -->
+                                                  </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-5" style="text-align:right">
+                                                            <label class=" text-grey" style="margin-right: 78px;">Name</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p style="word-break: break-all!important;">{{value?.documentName}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-5" style="text-align:right">
+                                                            <label class=" text-grey" style="margin-right: 64px;">Category</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p style="word-break: break-all!important;">{{value?.categoryName}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-5" style="text-align:right">
+                                                            <label class=" text-grey" style="margin-right: 62px;">Doc Type</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p style="word-break: break-all!important;">{{value?.imageURLs.length }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-5" style="text-align:right">
+                                                            <label class=" text-grey" style="margin-right: 64px;">Company</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p style="word-break: break-all!important;">{{value?.companyName}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-5" style="text-align:right">
+                                                            <label class=" text-grey" style="margin-right: 35px;">Purchased On</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p style="word-break: break-all!important;">{{value?.purchaseIssueDate}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-5" style="text-align:right">
+                                                            <label class=" text-grey" style="margin-right: 56px;">Expires On</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p style="word-break: break-all!important;">{{value?.documentName}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-5" style="text-align:right">
+                                                            <label class=" text-grey" style="margin-right: 14px;">Warranty (Months)</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p style="word-break: break-all!important;">{{value?.warrantyPeriod}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-5" style="text-align:right">
+                                                            <label class=" text-grey" style="margin-right: 62px;">Total Docs</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p style="word-break: break-all!important;">{{value?.documentName}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: red;">Close</button>
+                                                  <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        <a href="#delete" (click)="delete(data._id)" data-toggle="modal" class="view-icon"> <i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                     
+                    </div>
+                    <div class="custom-pagination mt30 text-center">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                    <div >
+                                            <pagination-controls (pageChange)="userRecord($event)"></pagination-controls>
+                                            </div>
+                                <!-- <li class="page-item">
+                                    <a class="page-link" aria-label="Previous">
+                                        <span aria-hidden="true">«</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li> -->
+                                <!-- <li class="page-item active"><a class="page-link">1</a></li>
+                                <li class="page-item"><a class="page-link" >2</a></li>
+                                <li class="page-item"><a class="page-link" >3</a></li>
+                                <li class="page-item"><a class="page-link" >4</a></li>
+                                <li class="page-item"><a class="page-link" >5</a></li> -->
+                                <!-- <li class="page-item">
+                                    <a class="page-link" aria-label="Next">
+                                        <span aria-hidden="true">»</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li> -->
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </fieldset>
+
+        </div>
+    </div>
+    <!-- Table Responsive End -->
+
+</main>
+
+
+<!-- signout_modal Start -->
+<div class="modal fade global-modal reset-modal" id="logout_modal">
+    <div class="modal-dialog max-WT-450">
+        <div class="modal-content">
+            <div>
+                <!-- Modal body -->
+                <div class="modal-body  text-center">
+                    <div class="row align-items-center modal_flax_height">
+                        <div class="col">
+                            <div class="box-title mb30 d-inline-block">
+                                <i class="fas fa-power-off off-icon"></i>
+                                <p class="mt40">Are you sure you want to logout?</p>
+                            </div>
+                            <div class="text-center">
+                                <a routerLink="/login" class="btn btn-blue btn-noYes">YES</a>
+                                <button type="button" class="btn btn-red btn-noYes" data-dismiss="modal">CANCEL</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Signout Modal END-->
+
+<!-- delete_modal Start -->
+<div class="modal fade global-modal reset-modal" id="delete">
+    <div class="modal-dialog max-WT-450">
+        <form class="change_password">
+            <div class="modal-content">
+                <div class="inner_border_area">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <div class="modal-body">
+                        <div class="text-center modal_flax_height d-flex align-items-center justify-content-center">
+                            <div class="w-100">
+                                <p>Are you sure want to delete this record?</p>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-info" (click)="deleteSubmit()" data-dismiss="modal">Submit</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
