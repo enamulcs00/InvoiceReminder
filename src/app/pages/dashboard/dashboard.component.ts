@@ -7,7 +7,7 @@ import { Alert } from 'selenium-webdriver';
 // import { CanvasJS } from 'chart.js';
 
 // import {map} from 'rxjs/operators';
-declare var $: any;
+declare var $ : any;
 declare var CanvasJS: any;
 @Component({
   selector: 'app-dashboard',
@@ -20,18 +20,18 @@ export class DashboardComponent implements OnInit {
   successData: any;
   description: any;
   helpCenter: any;
-  daskForm: FormGroup;
-  value = "";
+  daskForm:FormGroup;
+  value="";
   transdata: any;
   helpCenter1: any;
   helpCenter2: string;
-  chartData: any = []
+  chartData : any = []
   grapgdata: any;
-  graphUserdata: any = [];
-  userdata: any = [];
-  data: any = [];
-  mapped: any = [];
-  chartValue = [];
+  graphUserdata:any =[];
+  userdata:any=[];
+  data: any=[];
+  mapped: any=[];
+  chartValue =[];
   active: any;
   activedata: number;
   day: () => number;
@@ -39,221 +39,279 @@ export class DashboardComponent implements OnInit {
   dateString: string;
   todaydate: Date;
   dates: number;
-  constructor(public router: Router, public service: MainServicesService) { }
+  constructor(public router :Router ,public service: MainServicesService) { }
 
   ngOnInit() {
+    console.log('date==',new Date())
     this.daskForm = new FormGroup({
-      'selecday': new FormControl('')
+      'selecday' : new FormControl('')
     })
-    this.transaction();
+    this. transaction();
     this.totalUser();
     this.userActive();
     this.totalHelpCenter();
     this.log();
   }
-
-  changed(value) {
+    changed(value) {
+    
     this.value = value;
-    console.log('value====>>>', this.value)
+    // console.log('value====>>>',this.value)
     this.log();
   }
 
 
-  logoutFunc() {
-    // $('#logout_modal').modal('hide');
-    // this.router.navigateByUrl('/login')
-  }
-  // *********************************graph/findUser Api*****************************
+         logoutFunc(){
+        // $('#logout_modal').modal('hide');
+        // this.router.navigateByUrl('/login')
+         }
+      // *********************************graph/findUser Api*****************************
 
-  totalUser() {
-
-    let apireq = {
-    }
-    this.service.postApi('graph/findUser', apireq, 1).subscribe((success: any) => {
-      this.successData = success;
-      if (success.responseCode === 200) {
-        this.description = success.result.docs.length
-      }
-    }, error => {
-      console.log('Something went wrong');
-    })
-  }
-
+         totalUser(){
+          
+         let apireq = {
+            
+          }
+          console.log('apireq ==>>', apireq)
+          this.service.postApi('graph/findUser',apireq,1).subscribe((success:any)=> {
+          console.log("fgfhfghgfh",success)
+          this.successData=success;
+          if (success.responseCode === 200) {
+          // console.log("fdfdg",success.result)
+          this.description=success.result.docs.length
+          console.log('description===>>>',this.description)
+              
+          }
+          },error => {
+          console.log('Something went wrong');
+          })
+          }
   // ******************************graph/totalHelpCenter Api*********************
 
-  totalHelpCenter() {
-    let apireq = {
-    }
-    this.service.postApi('graph/totalHelpCenter', apireq, 1).subscribe((success: any) => {
-      this.successData = success;
-      if (success.responseCode === 200) {
-        this.helpCenter1 = success.result.docs.length
-      }
-    }, error => {
-      console.log('Something went wrong');
-    })
-  }
-
-  // *******************************graph/userGraph Api**************************aaaaaa
-  log() {
-    let data = {
-      "dayCount": this.value
-    }
-    this.service.postApi('graph/userGraph', data, 1).subscribe((success: any) => {
-      this.successData = success;
-      console.log('response', success)
-      if (success.responseCode === 200) {
-        this.grapgdata = success.result
-        var obje = Object.keys(success.result)
-        var objeValue = Object.values(success.result)
-        this.chartValue = [];
-        for (let i = 0; i < obje.length; i++) {
-          let obj =
-          {
-            'x': new Date(obje[i]),
-            'y': objeValue[i],
+          totalHelpCenter(){
+      
+          let apireq = {
+        
           }
-          this.chartValue.push(obj)
-        }
+      // console.log('apireq ==>>', apireq)
+          this.service.postApi('graph/totalHelpCenter',apireq,1).subscribe((success:any)=> {
+          console.log("fgfhfghgfh",success)
+          this.successData=success;
+          if (success.responseCode === 200) {
+          console.log("fdfdg",success.result.total)
+          this.helpCenter1=success.result.docs.length
+          console.log('graph/totalHelpCenter=====>>>>',success)
+    
+          
+          }
+          },error => {
+          console.log('Something went wrong');
+          })
+          }
 
-        if (this.value == 'Weekly') {
-          this.chartValue = [];
-          for (let i = 0; i < obje.length; i++) {
-            this.dt = new Date()
+          // *******************************graph/userGraph Api**************************aaaaaa
+          log(){
+          let data={
+            "dayCount": this.value
+          }
+          //console.log('dayCount===value',data)
+          //console.log('logdada==++',data)
+          this.service.postApi('graph/userGraph',data,1).subscribe((success:any)=> {
+          console.log("Data Fetched for Graph : ",success)
+          this.successData=success;
+          if (success.responseCode === 200) {
+           this.grapgdata = success.result
+           var obje = Object.keys(success.result)
+           console.log('value==>>',this.value)
+           var objeValue= Object.values(success.result)
+           //console.log('objeValue==>>',objeValue)
+          
+           this.chartValue = [] ;
+          for(let i=0; i<obje.length; i++){
+              // console.log('obje===len',obje.length)
+                          let obj = 
+                          { 'x' : new Date(obje[i]),
+                           'y' : objeValue[i],
+                          }
+                          this.chartValue.push(obj)
+                         }
+           
+
+           if(this.value=='Weekly'){
+           console.log("Weekly Data called Inside IF")
+           this.chartValue = [] ;
+           for(let i=0; i<obje.length; i++){
+            console.log('Object Data >>>>>> getFullYear >>>>>>> ',obje[i])
+            this.dt= new Date()
             this.dt.getFullYear()
+            console.log('dt===',this.dt.getDate())
             this.dateString = new Date(this.dt).toUTCString();
-            this.dateString = this.dateString.split(' ').slice(0, 4).join(' ');
-            this.todaydate = new Date()
-            this.dates = this.getWeekNum(new Date(obje[i]))
+             this.dateString  =  this.dateString .split(' ').slice(0, 4).join(' ');
+            console.log( 'date==',this.dateString );
+                 
+            this.todaydate= new Date()
+           this.dates= this.getWeekNum(new Date(obje[i]))
+           console.log('dates===>',this.dates)
+            console.log('todaydate===>>',this.todaydate.getDate())
+                          
+                          let obj = 
+                          { 'x' : new Date(obje[i]),
+                          'label':this.dates+'week',
+                           'y' : objeValue[i],
+                          }
+                          this.chartValue.push(obj)
+                          // if(this.chartValue==null){
+                          //   alert('ok')
+                          // }
+                          }
 
-            let obj =
-            {
-              'x': new Date(obje[i]),
-              'label': this.dates + 'week',
-              'y': objeValue[i],
-            }
-            this.chartValue.push(obj)
-            // if(this.chartValue==null){
-            //   alert('ok')
-            // }
-          }
+                          // let obj = 
+                          // { 'x' :this.getWeekNum(new Date(obje[i])),
+                          // label:this.dateString,
+                          //  'y' : objeValue[i],
+                          // }
+                          // this.chartValue.push(obj)
+                          // // if(this.chartValue==null){
+                          // //   alert('ok')
+                          // // }
+                          // }
+                          
+           console.log('Weekly Chat prepared ',this.chartValue)
+           } 
 
-          // let obj = 
-          // { 'x' :this.getWeekNum(new Date(obje[i])),
-          // label:this.dateString,
-          //  'y' : objeValue[i],
-          // }
-          // this.chartValue.push(obj)
-          // // if(this.chartValue==null){
-          // //   alert('ok')
-          // // }
-          // }
+           if(this.value=='Daily'){
+          
+            console.log("Weekly Data called Inside IF")
+            this.chartValue = [] ;
+            for(let i=0; i<obje.length; i++){
+             // console.log('Object Data >>>>>> getFullYear >>>>>>> ',obje[i])
+     
+             let days=new Date(obje[i])
+             console.log('11day==>>',days)
+            var day =days.getDate()
+             console.log('day==>>',day)
 
-        }
+             this.dt= new Date()
+             console.log('dt===',this.dt.getFullYear())
+             this.dateString = new Date(this.dt).toUTCString();
+              this.dateString  =  this.dateString .split(' ').slice(0, 4).join(' ');
+             console.log( 'date==',this.dateString );
 
-        if (this.value == 'Daily') {
-          this.chartValue = [];
-          for (let i = 0; i < obje.length; i++) {
-            let days = new Date(obje[i])
-            var day = days.getDate()
-            this.dt = new Date()
-            console.log('dt===', this.dt.getFullYear())
-            this.dateString = new Date(this.dt).toUTCString();
-            this.dateString = this.dateString.split(' ').slice(0, 4).join(' ');
-            let obj =
-            {
-              'x': day, label: this.weekAndDay(new Date(obje[i])),
-              'y': objeValue[i],
-            }
-            this.chartValue.push(obj)
-            // if(this.chartValue==null){
-            //   alert('ok')
-            // }
-          }
-          console.log('Weekly Chat prepared ', this.chartValue)
-        }
+                           let obj = 
+                           { 'x' : day,label:this.weekAndDay(new Date(obje[i])) ,
+                           
+                            'y' : objeValue[i],
 
-        else {
-        }
-        console.log('Chart Value Formed : ', this.chartValue)
-        var chart = new CanvasJS.Chart("chartContainer",
-          {
+                           }
+                           this.chartValue.push(obj)
+                           // if(this.chartValue==null){
+                           //   alert('ok')
+                           // }
+                           }
+                           
+            console.log('Weekly Chat prepared ',this.chartValue)
+            } 
+
+
+
+
+           else {
+            console.log(" In Else Part of value == weekly")
+           }
+           console.log('Chart Value Formed : ',this.chartValue)
+           var chart = new CanvasJS.Chart("chartContainer",
+           {
             theme: "light2",
-            title: {
+            title:{
               text: this.dateString,
             },
-            axisX: {
-              title: this.value,
+           axisX:{
+           title: this.value,
+           
+           gridThickness: 2,
+           interval: 1,
+          //  label:this.chartValue,
+           },
+           axisY: {
+           title: "No of User",
+            gridThickness: 1,
+           interval: 1, 
+           },
+         
+           data: [
+           {  
+           type: "line",
+         
+           dataPoints: this.chartValue,
+        
+          //  gridThickness: 2,
+           }]
+           });
+ 
+           chart.render();
+           
+           }
+           },error => {
+           console.log('Something went wrong');
+           })
+           }
+          // ****************************graph/totalTransaction Api********************
 
-              gridThickness: 2,
-              interval: 1,
-              //  label:this.chartValue,
-            },
-            axisY: {
-              title: "No of User",
-              gridThickness: 1,
-              interval: 1,
-            },
-            data: [
-              {
-                type: "line",
-                dataPoints: this.chartValue,
+          transaction(){
+          let data={
+        
+          }
+          this.service.postApi('graph/totalTransaction',data,1).subscribe((success:any)=> {
+            
+          this.successData=success;
+          if (success.responseCode === 200) {
+          console.log("fdfdg",success.result.total)
+          this.transdata=success.result.total
+          console.log("fgfhfghgfh=========Amit",this.transdata);
+              
+              
+          }
+          },error => {
+          console.log('Something went wrong');
+          })
+          }
 
-                //  gridThickness: 2,
-              }]
-          });
-        chart.render();
-      }
-    }, error => {
-      console.log('Something went wrong');
-    })
-  }
+          userActive(){
+            this.service.getApi('graph/activeUser',1).subscribe((data:any)=>{
+              console.log('graph/activeUser===>>>',data)
+              this.active=data.total
+              console.log("activedata22===>>",this.active)
+              
+              // this.activedata =Math.round(this.active * 100) / 100
+              this.activedata =Math.round(this.active)
+              console.log("activedata===>>",this.activedata)
+            })
+          }
 
-  // ****************************graph/totalTransaction Api********************
+      //     chart(){
+        
+      // }
+    
+    getWeekNum(date:any){
+      let weekNum :any;
+      weekNum = new Date(date.getFullYear(),0,1);
+     return Math.ceil((((date - weekNum) / 86400000) + weekNum.getDay()+1)/7);
+}
 
-  transaction() {
-    let data = {
-    }
-    this.service.postApi('graph/totalTransaction', data, 1).subscribe((success: any) => {
-      this.successData = success;
-      if (success.responseCode === 200) {
-        this.transdata = success.result.total
-      }
-    }, error => {
-      console.log('Something went wrong');
-    })
-  }
-
-  userActive() {
-    this.service.getApi('graph/activeUser', 1).subscribe((data: any) => {
-      this.active = data.total
-      // this.activedata =Math.round(this.active * 100) / 100
-      this.activedata = Math.round(this.active)
-    })
-  }
-
-  //     chart(){
-
-  // }
-
-  getWeekNum(date: any) {
-    let weekNum: any;
-    weekNum = new Date(date.getFullYear(), 0, 1);
-    return Math.ceil((((date - weekNum) / 86400000) + weekNum.getDay() + 1) / 7);
-  }
-
-  weekAndDay(date) {
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
-      'Thursday', 'Friday', 'Saturday'],
+weekAndDay(date) {
+    
+  var days = ['Sunday','Monday','Tuesday','Wednesday',
+              'Thursday','Friday','Saturday'],
       prefixes = ['', '', '', '', ''];
-    return prefixes[Math.floor(date.getDate() / 7)] + ' ' + days[date.getDay()];
-  }
 
-
-
+  return prefixes[Math.floor(date.getDate() / 7)] + ' ' + days[date.getDay()];
 
 }
 
 
 
+
+  }
+  
+
+ 
 

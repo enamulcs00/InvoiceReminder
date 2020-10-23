@@ -13,9 +13,10 @@ declare var $: any;
 })
 export class OfferPromoManagementComponent implements OnInit {
   [x: string]: any;
-
+  totalPage:any;
   searchkey: any = '';
   pageNo: any = 1;
+  page:any;
   pageNumber: any = 1;
   user: any = [];
   srNo: number;
@@ -27,10 +28,15 @@ export class OfferPromoManagementComponent implements OnInit {
   message: any;
   newData: any = [];
   p: number = 1;
+  getofferdata:any;
   paginationData: any = {};
+  limit:any;
   calender: any = { todate: '', formdate: '' }
   fromDate: any;
+  
   twoDate: any;
+  
+  todayDate: Date;
   total: any;
   activeTab: any = localStorage.getItem('tabname') ? localStorage.getItem('tabname') : 'offers';
 
@@ -40,8 +46,6 @@ export class OfferPromoManagementComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userType = JSON.parse(localStorage.getItem('type'))
-
     this.switchTab(this.activeTab)
 
 
@@ -243,7 +247,6 @@ export class OfferPromoManagementComponent implements OnInit {
 
   //export User
   exportAsXLSX() {
-
     let dataArr = [];
     this.getofferdata.forEach((element, ind) => {
       dataArr.push({
@@ -252,7 +255,8 @@ export class OfferPromoManagementComponent implements OnInit {
         "Offer Code": element.offerCode,
       })
     })
-    this.service.exportAsExcelFile(dataArr, 'Offer Management');
+
+    this.service.exportAsExcelFile(dataArr, 'Offer&Promotion Management');
   }
 
 

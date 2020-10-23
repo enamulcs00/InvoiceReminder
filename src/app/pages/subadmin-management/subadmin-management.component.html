@@ -19,14 +19,12 @@
                             </div>
                         </div>
                     </div>
-
+                    <img src="assets/img/import_icon.png" alt="" style="height: 30px; width: 30px;cursor: pointer;"
+                        (click)="exportAsXLSX()">Export
                     <!-- <button (click)="exportAsXLSX()">Export</button> -->
                     <div class="ml-auto">
                         <a routerLink="/add-subadmin" class="link font17"><i class="fas fa-plus-circle mr-1"></i> Add
                             Sub Admin</a>
-                        <a *ngIf="userType != 'SUBADMIN'" (click)="exportAsXLSX()" class="link font17 ml-3"
-                            style="cursor: pointer;"> <i class="fas fa-download"></i> Export</a>
-
                     </div>
                 </div>
             </div>

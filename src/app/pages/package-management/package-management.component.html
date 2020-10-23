@@ -20,10 +20,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="ml-auto">
-                    <a *ngIf="userType != 'SUBADMIN'" (click)="exportAsXLSX()" class="link font17 ml-3"
-                        style="cursor: pointer;"> <i class="fas fa-download"></i> Export</a>
-                </div>
+                <img src="assets/img/import_icon.png" alt="" style="height: 30px; width: 30px;cursor: pointer;"
+                    (click)="exportAsXLSX()">Export
             </div>
 
             <div class="global-table no-radius p0">

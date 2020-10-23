@@ -20,13 +20,10 @@ export class SubadminManagementComponent implements OnInit {
   status: string;
   userId: any;
   userList: any;
-  userType: any;
   constructor(public router: Router, public service: MainServicesService) { }
 
   ngOnInit() {
-
     this.search(this.pageNo)
-    this.userType = JSON.parse(localStorage.getItem('type'))
   }
 
   edit(id) {
@@ -41,7 +38,7 @@ export class SubadminManagementComponent implements OnInit {
     }
 
     this.service.postApi(`admin/userList`, postData, 1).subscribe(response => {
-      console.log("subadmin_List", response)
+      console.log("to check userist", response)
       if (response['responseCode'] == 200) {
         this.user = response;
         this.userList = this.user.result
@@ -112,7 +109,7 @@ export class SubadminManagementComponent implements OnInit {
 
   //export User
   exportAsXLSX() {
-
+    console.log('click')
     let dataArr = [];
     this.userList.forEach((element, ind) => {
       dataArr.push({
@@ -122,14 +119,8 @@ export class SubadminManagementComponent implements OnInit {
       })
     })
     this.service.exportAsExcelFile(dataArr, 'Sub Admin Management');
+
   }
-
-
-
-
-
-
-
 
 
 

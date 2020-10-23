@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MainServicesService } from 'src/app/main-services.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import * as XLSX from 'xlsx';
 
 declare var $: any;
 @Component({
@@ -11,8 +10,6 @@ declare var $: any;
   styleUrls: ['./category-management.component.css']
 })
 export class CategoryManagementComponent implements OnInit {
-
-
   pageNo: number = 1;
   searchkey: any;
   user: any = [];
@@ -21,18 +18,13 @@ export class CategoryManagementComponent implements OnInit {
   categoryForm: FormGroup
   categoryId: any;
   editCategoryForm: FormGroup
-  userType1: any;
   userType: any;
   status: string;
   arraydata: any = [];
-  categoryName: any;
 
   constructor(public router: Router, public service: MainServicesService) { }
 
   ngOnInit() {
-
-    this.userType1 = JSON.parse(localStorage.getItem('type'))
-
     this.search(this.pageNo)
     this.buildcategoryForm()
     this.buildEditCategoryForm()
@@ -40,9 +32,6 @@ export class CategoryManagementComponent implements OnInit {
       editCategoryName: new FormControl('', Validators.required)
     })
   }
-
-
-
 
   search(page) {
     this.pageNo = page;
@@ -76,6 +65,7 @@ export class CategoryManagementComponent implements OnInit {
   buildEditCategoryForm() {
     this.editCategoryForm = new FormGroup({
       "editCategoryName": new FormControl('', Validators.required),
+
     })
   }
 
@@ -97,8 +87,8 @@ export class CategoryManagementComponent implements OnInit {
       console.log('Something went wrong');
     })
   }
-
   editCategoryFunc(categoryId, userType) {
+
     for (let i of this.user) {
       if (i._id == categoryId) {
         this.editCategoryForm.patchValue({
@@ -112,6 +102,8 @@ export class CategoryManagementComponent implements OnInit {
   }
 
   editCategory() {
+
+
     let apireq = {
       'categoryId': this.categoryId,
       'userType': this.userType,
@@ -172,6 +164,7 @@ export class CategoryManagementComponent implements OnInit {
     this.service.postApi('category/deleteCategory', apireq, 1).subscribe((success: any) => {
       if (success.responseCode === 200) {
         this.search(this.pageNo)
+
       }
     }, error => {
       console.log('Something went wrong');
@@ -188,46 +181,8 @@ export class CategoryManagementComponent implements OnInit {
         "Status": element.status,
       })
     })
+
     this.service.exportAsExcelFile(dataArr, 'Category Management');
-  }
-
-
-
-  // ..........................................upload XLSX..................  //
-  onFileChange(event) {
-    let workBook = null;
-    let jsonData = null;
-    const reader = new FileReader();
-    const file = event.target.files[0];
-    console.log("file type ->", file.type)
-    if ((file.type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') || (file.type == 'application/vnd.ms-excel') || file.type == 'text/csv') {
-      reader.onload = (event) => {
-        const data = reader.result;
-        workBook = XLSX.read(data, { type: 'binary' });
-        jsonData = workBook.SheetNames.reduce((initial, name) => {
-          const sheet = workBook.Sheets[name];
-          initial[name] = XLSX.utils.sheet_to_json(sheet);
-          return initial;
-        }, {});
-        // console.log('jsonData==>>', jsonData);
-        this.user = Object.values(jsonData)[0]
-        this.uploadExcelFile()
-      }
-      reader.readAsBinaryString(file);
-    } else {
-      console.log('Please upload a excel sheet only.')
-    }
-  }
-
-  // upload excel file
-  uploadExcelFile() {
-    var formData: any = new FormData();
-    formData.append("csvFile", this.user);
-    console.log("formData", formData)
-    this.service.postApi('category/importCategory', formData, 1).subscribe(res => {
-      console.log("response ==>", res);
-    }, err => {
-    })
   }
 
 }
