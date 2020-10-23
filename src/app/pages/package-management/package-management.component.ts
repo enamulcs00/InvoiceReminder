@@ -18,6 +18,7 @@ export class PackageManagementComponent implements OnInit {
   editForm: any;
   packagedata: any;
   userList: any;
+  userType: any;
 
 
   constructor(public router: Router, public activatedRoute: ActivatedRoute, public service: MainServicesService) {
@@ -32,6 +33,8 @@ export class PackageManagementComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userType = JSON.parse(localStorage.getItem('type'))
+
     this.search(this.pageNo)
     // this.getId();
     // this.search1()

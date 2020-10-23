@@ -11,13 +11,12 @@ export class StaticContentManagementComponent implements OnInit {
 type:any;
   result: any;
   successData: any;
-  description={term:'',privacy:'',tutor:'',image:''}
-  constructor(public router: Router, public service: MainServicesService) {}
+  description={term:'',privacy:''}
+  constructor(public router: Router, public service: MainServicesService) { }
 
   ngOnInit() {
     this.viewTermsAndConditions();
     this.viewPrivacyPolicy();
-    this.viewTutorial();
   }
 
   onTermsEditClick(){
@@ -33,7 +32,7 @@ type:any;
       }
       console.log('apireq ==>>', apireq)
       this.service.postApi('static/getStaticContent',apireq,1).subscribe((success:any)=> {
-        // console.log('Description:-->:',success)
+        console.log(success)
         this.successData=success;
         if (success.responseCode === 200) {
           this.description.term=success.result.description
@@ -68,29 +67,6 @@ type:any;
       console.log('Something went wrong');
     })
   }
-  tutorialEdit(){
-    this.router.navigate(['tutorial-edit'])
-  }
+
   
-  viewTutorial(){
-    let apireq = {
-      type: 'TUTORIAL'  
-      }
-      console.log('Tutorial ==>>', apireq)
-      this.service.postApi('static/getStaticContent',apireq,1).subscribe((success:any)=> {
-        console.log('Tutorial Views:',success)
-        this.successData=success;
-       if (success.responseCode === 200) {
-          this.description.tutor=success.result.tutorial[0].tutorialData;
-          this.description.image = success.result.tutorial[0].tutorialImage;
-          console.log("this is TData:",success.result.tutorial)
-          if(this.description.tutor.length>50){
-            this.description.tutor=this.description.tutor.slice(0,100)+'...'
-          }
-            localStorage.setItem('tutorial',JSON.stringify(this.successData.result._id));
-       }
-    },error => {
-      console.log('Something went wrong');
-    })
-  }
 }

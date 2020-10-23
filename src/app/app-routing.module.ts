@@ -34,7 +34,6 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { AuthGuard } from './auth.guard';
 import { EditPromotionComponent } from './edit-promotion/edit-promotion.component';
 import { PromotionEditComponent } from './promotion-edit/promotion-edit.component';
-import { TutorialEditComponent } from './pages/tutorial-edit/tutorial-edit.component';
 
 
 const routes: Routes = [
@@ -64,7 +63,6 @@ const routes: Routes = [
   { path: 'help-center-edit/:id', component: HelpCenterEditComponent, canActivate: [AuthGuard] },
   { path: 'privacy-edit', component: PrivacyEditComponent, canActivate: [AuthGuard] },
   { path: 'tutorials-view', component: TutorialsViewComponent, canActivate: [AuthGuard] },
-  { path: 'tutorial-edit', component: TutorialEditComponent, canActivate: [AuthGuard] },
   { path: 'privacy-view', component: PrivacyViewComponent, canActivate: [AuthGuard] },
   { path: 'terms-edit', component: TermsEditComponent, canActivate: [AuthGuard] },
   { path: 'terms-view', component: TermsViewComponent, canActivate: [AuthGuard] },

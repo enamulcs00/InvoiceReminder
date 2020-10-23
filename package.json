@@ -23,6 +23,7 @@
     "angularjs-datepicker": "^2.1.23",
     "angularjs-daterangepicker": "^1.1.5",
     "core-js": "^2.5.4",
+    "faker": "^5.1.0",
     "file-saver": "^2.0.2",
     "mydatepicker": "^2.6.6",
     "ngx-cookie-service": "^2.1.0",
