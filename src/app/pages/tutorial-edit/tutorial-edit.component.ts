@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-tutorial-edit',
@@ -9,7 +9,11 @@ import { FormGroup } from '@angular/forms';
 export class TutorialEditComponent implements OnInit {
   TutorialForm: FormGroup;
   urls = [];
-  constructor() { }
+  constructor() {
+    this.TutorialForm=new FormGroup({
+      'image':new FormControl('')
+    })
+   }
 
   ngOnInit() {}
 
@@ -27,5 +31,7 @@ export class TutorialEditComponent implements OnInit {
       }
     }
   }
-
+UpdateTutorial(){
+  
+}
 }
