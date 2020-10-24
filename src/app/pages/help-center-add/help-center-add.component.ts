@@ -111,7 +111,7 @@ NumOnly(event){
 getAllCtegories(){
   let channel = "category/listOfCategory"
   this.service.getApi(channel,1).subscribe((res:any)=>{
-    console.log('Response of Cat',res.result)
+    console.log('Response of Cat',res)
     this.categoriesList = res.result;
     
   })
