@@ -2,6 +2,7 @@
 <app-side-menu></app-side-menu>
 
   <main class="middle-content">
+    <form [formGroup]="TutorialForm">
       <div class="content-section">
               <div class="page_title_block">
                   <h1 class="page_title">Tutorial Management</h1>
@@ -13,21 +14,26 @@
                           <label class="mr-3">TUTORIALS : </label>
                           <div class="file btn btn-upload btn-primary">
                               Upload Image
-                              <input type="file" name="file"/>
+                              <input type="file" name="image" accept="image/*" formControlName="image"
+                                    (change)="onSelectFile($event)" multiple />
                           </div>
                           <button class="btn btn-primary font14 ml-2">Update</button>
                       </div>
-                      <div class="d-flex text-center mb-4  flex-wrap">
-                          <img src="../assets/img/bg@2x.png" style="max-width:150px;height:150px;margin:5px;">
-                          <img src="../assets/img/bg@2x.png" style="max-width:150px;height:150px;margin:5px;">
-                          <img src="../assets/img/bg@2x.png" style="max-width:150px;height:150px;margin:5px;">
-                          <img src="../assets/img/bg@2x.png" style="max-width:150px;height:150px;margin:5px;">
+                      <div class="row">
+                        <div class="col-md-4" *ngFor="let data of urls">
+                      <div class="d-flex text-center mb-2  flex-wrap">
+                          
+
+                          <img src={{data}} style="max-width:150px;height:150px;">
+                        </div>
+                    </div>
                       </div>
                       
                   </div>
               </div>
           </div>
-          </div>       
+          </div>   
+    </form>          
 </main>
 
 
