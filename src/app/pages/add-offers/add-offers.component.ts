@@ -175,10 +175,10 @@ export class AddOffersComponent implements OnInit {
      //------------------GenerateCode--------------------------    
      generateCode() {
       this.service.getApi('service/generateCode', 1).subscribe((res: any) => {
-        console.log('response', res.result)
+        console.log('responseCode:', res)
         if (res.responseCode == 200) {
-          this.generetedCode = res.result.code
-          console.log('offerCode', this.generetedCode)
+          this.generetedCode = res.responseResult
+         console.log('offerCode', this.generetedCode)
           this.offerForm.patchValue({
             password: this.generetedCode
           })
