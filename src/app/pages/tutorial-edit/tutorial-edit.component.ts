@@ -85,8 +85,11 @@ UpdateTutorial(){
     
     })
 }
-changeImage(){
-  $('#openFile').trigger('click');
+// changeImage(){
+//   $('#openFile').trigger('click');
   
-}
+// }
+removeImage(i){
+  this.urls.splice(i, 1);
+ }
 }
