@@ -15,14 +15,14 @@
                           <div class="file btn btn-upload btn-primary">
                               Upload Image
                               <input type="file" name="image" accept="image/*" formControlName="image"
-                                    (change)="onSelectFile($event)" multiple />
+                                    (change)="onSelectFile($event)" multiple id="openFile"/>
                           </div>
                           <button class="btn btn-primary font14 ml-2" (click)="UpdateTutorial()">Update</button>
                       </div>
                       <div class="row">
-                        <div class="col-md-4" *ngFor="let data of urls">
+                        <div class="col-md-4" *ngFor="let data of urls; index as i">
                       <div class="d-flex text-center mb-2  flex-wrap">
-                        <img src={{data}} style="max-width:150px;height:150px;">
+                        <img src={{data}} style="max-width:150px;height:150px;" (click)="changeImage()">
                         </div>
                     </div>
                       </div>

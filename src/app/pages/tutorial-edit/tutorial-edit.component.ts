@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MainServicesService } from 'src/app/main-services.service';
-
+declare var $:any;
 @Component({
   selector: 'app-tutorial-edit',
   templateUrl: './tutorial-edit.component.html',
@@ -84,5 +84,9 @@ UpdateTutorial(){
       this.service.toastErr('Something went wrong')
     
     })
+}
+changeImage(){
+  $('#openFile').trigger('click');
+  
 }
 }
