@@ -11,7 +11,7 @@ export class StaticContentManagementComponent implements OnInit {
 type:any;
   result: any;
   successData: any;
-  description={term:'',privacy:'',tutorial:''}
+  description={term:'',privacy:'',tutor:'',image:''}
   constructor(public router: Router, public service: MainServicesService) {}
 
   ngOnInit() {
@@ -76,17 +76,19 @@ type:any;
     let apireq = {
       type: 'TUTORIAL'  
       }
-      console.log('apireq ==>>', apireq)
+      console.log('Tutorial ==>>', apireq)
       this.service.postApi('static/getStaticContent',apireq,1).subscribe((success:any)=> {
-        console.log(success)
+        console.log('Tutorial Views:',success)
         this.successData=success;
-        if (success.responseCode === 200) {
-          this.description.tutorial=success.result.description
-          if(this.description.tutorial.length>50){
-            this.description.tutorial=this.description.tutorial.slice(0,100)+'...'
+       if (success.responseCode === 200) {
+          this.description.tutor=success.result.tutorial[0].tutorialData;
+          this.description.image = success.result.tutorial[0].tutorialImage;
+          console.log("this is TData:",success.result.tutorial)
+          if(this.description.tutor.length>50){
+            this.description.tutor=this.description.tutor.slice(0,100)+'...'
           }
             localStorage.setItem('tutorial',JSON.stringify(this.successData.result._id));
-      }
+       }
     },error => {
       console.log('Something went wrong');
     })
