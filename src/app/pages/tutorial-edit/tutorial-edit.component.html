@@ -17,7 +17,7 @@
                               <input type="file" name="image" accept="image/*" formControlName="image"
                                     (change)="onSelectFile($event)" multiple />
                           </div>
-                          <button class="btn btn-primary font14 ml-2">Update</button>
+                          <button class="btn btn-primary font14 ml-2" (click)="UpdateTutorial()">Update</button>
                       </div>
                       <div class="row">
                         <div class="col-md-4" *ngFor="let data of urls">
