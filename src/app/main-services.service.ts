@@ -32,7 +32,8 @@ export class MainServicesService {
 
  // baseUrl = 'http://ec2-35-176-66-190.eu-west-2.compute.amazonaws.com:1550/v1/'
   // baseUrl = `http://ec2-35-176-66-190.eu-west-2.compute.amazonaws.com:1520/ V1`
-  baseUrl = 'http://182.72.203.245:1813/v1/'
+  // baseUrl = 'http://182.72.203.245:1813/v1/'       updated on 28-10-2020
+  baseUrl = 'https://invoicenode.mobiloitte.com/'
   // baseUrl = 'http://162.222.32.20:1451/v1/'
   //   172.16.1.117
 
