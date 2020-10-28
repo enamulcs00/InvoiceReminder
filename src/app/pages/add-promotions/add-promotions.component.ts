@@ -10,7 +10,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class AddPromotionsComponent implements OnInit {
   addPromoForm: FormGroup;
- 
+  stardate:any;
+  StartDateFirst:boolean = true;
   urls: any = [];
   hours: any;
   minutes: any;
@@ -57,6 +58,7 @@ export class AddPromotionsComponent implements OnInit {
   formdate() {
     this.fromDate = new Date()
     this.setdate();
+    this.StartDateFirst = false;
   }
   todate() {
     this.twoDate = new Date()
