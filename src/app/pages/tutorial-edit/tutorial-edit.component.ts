@@ -30,7 +30,7 @@ export class TutorialEditComponent implements OnInit {
       }
       console.log('TutorialReq ==>>', apireq)
       this.service.postApi('static/getStaticContent',apireq,1).subscribe((success:any)=> {
-       //console.log('Tutorial Views:',success)
+       console.log('Tutorial Views:',success)
         this.urls=success.result.image;
        
        if (success.responseCode === 200) {
@@ -46,7 +46,7 @@ export class TutorialEditComponent implements OnInit {
   
   getStaticId(){
     this.Id = JSON.parse(localStorage.getItem('tutorial'));
-    //console.log('id ===>>',this.Id);
+    console.log('This is Tutorial id: ===>>',this.Id);
 
   }
 
@@ -56,11 +56,11 @@ export class TutorialEditComponent implements OnInit {
       for (let i = 0; i < filesAmount; i++) {
         var reader = new FileReader();
         reader.onload = (event: any) => {
-      //    console.log(event.target.result);
+          console.log(event.target.result);
           this.urls.push(event.target.result);
         }
         reader.readAsDataURL(event.target.files[i]);
-        //console.log('urls==>', this.urls)
+        console.log('urls==>', this.urls)
       }
     }
   }
@@ -73,7 +73,7 @@ UpdateTutorial(){
   console.log('ReqObject:',apireq)
   this.service.postApi(`static/updateStaticContent`,apireq,1).subscribe(response=>{
     if(response["responseCode"]==200){
-      console.log("updated Data=====",response)
+     // console.log("updated Data=====",response)
       this.service.showSuccess('Tutorial updated successfully')
     this.router.navigate(['static-content-management'])
     }
@@ -90,6 +90,7 @@ UpdateTutorial(){
   
 // }
 removeImage(i){
+  console.log('These are index Numbers:----->>>>> ',i);
   this.urls.splice(i, 1);
  }
 }
