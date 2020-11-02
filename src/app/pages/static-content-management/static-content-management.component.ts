@@ -79,7 +79,7 @@ type:any;
       }
       console.log('Tutorial ==>>', apireq)
       this.service.postApi('static/getStaticContent',apireq,1).subscribe((success:any)=> {
-        console.log('Tutorial Views:',success)
+        //console.log('Tutorial Views:',success)
         this.successData=success;
        if (success.responseCode === 200) {
           this.description.tutor=success.result.tutorial[0].tutorialData;

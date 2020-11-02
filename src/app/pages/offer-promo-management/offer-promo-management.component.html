@@ -264,50 +264,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="global-table no-radius p0">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-edit">
-                                <thead>
-                                    <tr class="no_wrap_th">
-                                        <th>S.No.</th>
-                                        <th>Image</th>
-                                        <th>Start Date</th>
-                                        <th>End Date</th>
-                                        <th class="action_td_btn3">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- <tr *ngFor="let items of user?.result | paginate :{itemsPerPage:user?.paginationData?.limit , currentPage:user?.paginationData?.page, totalItems: user?.paginationData?.total};index as i"> -->
-                                    <tr
-                                        *ngFor="let items of getofferdata | paginate :{itemsPerPage:paginationData?.limit , currentPage:paginationData?.page, totalItems:paginationData?.total, id:'promotionResult'}; index as i">
-                                        <td>{{limit * (page - 1)+i+1}}</td>
-                                        <td><img [src]="items?.image[0]" style="width:130px;"></td>
-                                        <td>{{items?.startDate| date:'yyyy-MM-dd' }}</td>
-                                        <td>{{items?.endDate | date:'yyyy-MM-dd' }}</td>
-                                        <td class="action_td_btn3">
-                                            <a (click)='view1(items._id)'> <i class="fa fa-eye"></i></a>
-                                            <a (click)="editPromotion(items?._id)"><i class="fa fa-edit"></i></a>
-                                            <a (click)="deletePromotion(items._id)" data-backdrop="static"
-                                                data-toggle="modal" class="view-icon" style="cursor:pointer"> <i
-                                                    class="fa fa-trash"></i></a>
-                                        </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="custom-pagination mt30 text-center">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <div>
-                                        <pagination-controls (pageChange)="paginationControl($event)"
-                                            id="promotionResult"></pagination-controls>
-                                    </div>
-
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
