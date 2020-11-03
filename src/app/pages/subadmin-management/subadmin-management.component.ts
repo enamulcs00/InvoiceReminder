@@ -50,7 +50,7 @@ export class SubadminManagementComponent implements OnInit {
         this.service.toastErr(response['responseMessage'])
       }
     }, error => {
-      // this.service.toastErr('Something Went Wrong')
+      this.service.toastErr('Something Went Wrong')
 
     })
   }
@@ -109,7 +109,7 @@ export class SubadminManagementComponent implements OnInit {
 
   //export User
   exportAsXLSX() {
-    console.log('click')
+    //console.log('click')
     let dataArr = [];
     this.userList.forEach((element, ind) => {
       dataArr.push({

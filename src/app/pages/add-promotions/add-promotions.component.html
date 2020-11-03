@@ -29,15 +29,15 @@
                             <div class="col-6">
                                 <label class="d-block pb-2">Start Date :</label>
                                 <div class="">
-                                    <input type="date" class="form-control " name="formdate" formControlName="startDate"
-                                        (change)="formdate()" placeholder="xx-xx-xxx" (ngModelChange)="changed($event)" min="{{todayDate | date:'yyyy-MM-dd'}}">
+                                    <input type="date" class="form-control " name="formdate" formControlName="startDate" [(ngModel)]="stardate"
+                            (change)="formdate()" placeholder="xx-xx-xxx" (ngModelChange)="changed($event)" min="{{todayDate | date:'yyyy-MM-dd'}}">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <label class="d-block pb-2">End Date :</label>
                                 <div class="">
-                                    <input type="date" class="form-control " name="todate" formControlName="endDate"
-                                        (change)="todate()" placeholder="xx-xx-xxx" (ngModelChange)="changed($event)" min="{{todayDate | date:'yyyy-MM-dd'}}">
+                                    <input type="date" class="form-control " name="todate" formControlName="endDate" [readOnly]="StartDateFirst"
+                                        (change)="todate()" placeholder="xx-xx-xxx" (ngModelChange)="changed($event)" min="{{stardate | date:'yyyy-MM-dd'}}">
                                 </div>
                             </div>
                         </div>

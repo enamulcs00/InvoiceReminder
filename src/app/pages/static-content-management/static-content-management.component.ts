@@ -15,9 +15,10 @@ type:any;
   constructor(public router: Router, public service: MainServicesService) {}
 
   ngOnInit() {
+    this.viewTutorial();
     this.viewTermsAndConditions();
     this.viewPrivacyPolicy();
-    this.viewTutorial();
+    
   }
 
   onTermsEditClick(){
@@ -78,11 +79,11 @@ type:any;
       }
       console.log('Tutorial ==>>', apireq)
       this.service.postApi('static/getStaticContent',apireq,1).subscribe((success:any)=> {
-        console.log('Tutorial Views:',success)
+        //console.log('Tutorial Views:',success)
         this.successData=success;
        if (success.responseCode === 200) {
           this.description.tutor=success.result.tutorial[0].tutorialData;
-          this.description.image = success.result.tutorial[0].tutorialImage;
+          
           console.log("this is TData:",success.result.tutorial)
           if(this.description.tutor.length>50){
             this.description.tutor=this.description.tutor.slice(0,100)+'...'
