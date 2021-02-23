@@ -12,6 +12,7 @@ export class PackageManagementComponent implements OnInit {
   pageNo: number = 1;
   searchkey: any;
   user: any;
+  fetching:boolean = false;
   paginationData: any;
   srNo: any;
   id: any;
@@ -38,6 +39,7 @@ export class PackageManagementComponent implements OnInit {
   }
 
   search(page) {
+    this.fetching = true;
     console.log(page)
 
     this.pageNo = page;
@@ -50,6 +52,7 @@ export class PackageManagementComponent implements OnInit {
       console.log("to check userlist", JSON.stringify(response))
       if (response['responseCode'] == 200) {
         this.user = response;
+        this.fetching = false;
         this.userList = this.user.result
         console.log("=>>>>>>>..gfgffghfgh", this.user)
         this.paginationData = response['paginationData']

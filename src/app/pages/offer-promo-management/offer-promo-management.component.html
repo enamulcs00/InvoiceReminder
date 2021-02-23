@@ -66,19 +66,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- <tr *ngFor="let items of offerlistdata">
-                                          <td>1</td>
-                                          <td>{{items?.offerTagLine}}</td>
-                                          <td>{{items?.offerCode}}</td>
-                                          <td>{{items?.startDate}}</td>
-                                          <td>{{items?.endDate}}</td>
-                                          <td class="action_td_btn3">
-                                              <a routerLink="/view-offers"> <i class="fa fa-eye"></i></a>
-                                              <a routerLink="/edit-offers"><i class="fa fa-edit"></i></a>
-                                              <a href="#delete" data-toggle="modal"> <i class="fa fa-trash"></i></a>
-                                          </td>
-                                      </tr> -->
-                                    <!-- <tr *ngFor="let items of getofferdata; let i=index"> -->
+                                  
                                     <tr
                                         *ngFor="let items of getofferdata | paginate :{itemsPerPage:limit , currentPage:page, totalItems: totalPage, id:'userResult'};index as i">
                                         <td>{{limit * (page - 1)+i+1}}</td>
@@ -97,87 +85,17 @@
                                             <!-- <button type="button" (click)="delete()" class="btn btn-info" data-dismiss="modal">Delete</button> -->
                                         </td>
                                     </tr>
-                                    <!-- <tr *ngIf="user == '' ">
-                                            <span><img src="assets/img/datanot.jpg"></span>
-                                        </tr> -->
-                                    <!-- <tr>
-                                          <td>1</td>
-                                          <td>Buy 1 get 1 free</td>
-                                          <td>#we4rdF</td>
-                                          <td>22/05/2018</td>
-                                          <td>22/06/2018</td>
-                                          <td class="action_td_btn3">
-                                              <a routerLink="/view-offers"> <i class="fa fa-eye"></i></a>
-                                              <a routerLink="/edit-offers"><i class="fa fa-edit"></i></a>
-                                              <a href="#delete" data-toggle="modal"> <i class="fa fa-trash"></i></a>
-                                          </td>
-                                      </tr> -->
-                                    <!-- <tr>
-                                          <td>1</td>
-                                          <td>Buy 1 get 1 free</td>
-                                          <td>#we4rdF</td>
-                                          <td>22/05/2018</td>
-                                          <td>22/06/2018</td>
-                                          <td class="action_td_btn3">
-                                              <a routerLink="/view-offers"> <i class="fa fa-eye"></i></a>
-                                              <a routerLink="/edit-offers"><i class="fa fa-edit"></i></a>
-                                              <a href="#delete" data-toggle="modal"> <i class="fa fa-trash"></i></a>
-                                          </td>
-                                      </tr> -->
-                                    <!-- <tr>
-                                          <td>1</td>
-                                          <td>Buy 1 get 1 free</td>
-                                          <td>#we4rdF</td>
-                                          <td>22/05/2018</td>
-                                          <td>22/06/2018</td>
-                                          <td class="action_td_btn3">
-                                              <a routerLink="/view-offers"> <i class="fa fa-eye"></i></a>
-                                              <a routerLink="/edit-offers"><i class="fa fa-edit"></i></a>
-                                              <a href="#delete" data-toggle="modal"> <i class="fa fa-trash"></i></a>
-                                          </td>
-                                      </tr> -->
-                                    <!-- <tr>
-                                          <td>1</td>
-                                          <td>Buy 1 get 1 free</td>
-                                          <td>#we4rdF</td>
-                                          <td>22/05/2018</td>
-                                          <td>22/06/2018</td>
-                                          <td class="action_td_btn3">
-                                              <a routerLink="/view-offers"> <i class="fa fa-eye"></i></a>
-                                              <a routerLink="/edit-offers"><i class="fa fa-edit"></i></a>
-                                              <a href="#delete" data-toggle="modal"> <i class="fa fa-trash"></i></a>
-                                          </td>
-                                      </tr> -->
-                                    <!-- <tr>
-                                          <td>1</td>
-                                          <td>Buy 1 get 1 free</td>
-                                          <td>#we4rdF</td>
-                                          <td>22/05/2018</td>
-                                          <td>22/06/2018</td>
-                                          <td class="action_td_btn3">
-                                              <a routerLink="/view-offers"> <i class="fa fa-eye"></i></a>
-                                              <a routerLink="/edit-offers"><i class="fa fa-edit"></i></a>
-                                              <a href="#delete" data-toggle="modal"> <i class="fa fa-trash"></i></a>
-                                          </td>
-                                      </tr> -->
-                                    <!-- <tr>
-                                          <td>1</td>
-                                          <td>Buy 1 get 1 free</td>
-                                          <td>#we4rdF</td>
-                                          <td>22/05/2018</td>
-                                          <td>22/06/2018</td>
-                                          <td class="action_td_btn3">
-                                              <a routerLink="/view-offers"> <i class="fa fa-eye"></i></a>
-                                              <a routerLink="/edit-offers"><i class="fa fa-edit"></i></a>
-                                              <a href="#delete" data-toggle="modal"> <i class="fa fa-trash"></i></a>
-                                          </td>
-                                      </tr> -->
+                                    
 
 
                                 </tbody>
                                 <!-- <pagination-controls  (pageChange)="paginationControl($event)" id="userResult"></pagination-controls> -->
 
                             </table>
+                            <div class="text-center" *ngIf="fetching">
+                                <i class="fa fa-spinner fa-spin" style="font-size:36px;color: blue;"></i>
+                                 fetching...
+                                </div>
                         </div>
                         <div class="custom-pagination mt30 text-center">
                             <nav aria-label="Page navigation example">
@@ -295,6 +213,10 @@
 
                                 </tbody>
                             </table>
+                            <div class="text-center" *ngIf="fetching">
+                                <i class="fa fa-spinner fa-spin" style="font-size:36px;color: blue;"></i>
+                                 fetching...
+                                </div>
                         </div>
                         <div class="custom-pagination mt30 text-center">
                             <nav aria-label="Page navigation example">

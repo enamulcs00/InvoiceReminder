@@ -1,12 +1,3 @@
-.imags{
-        /* position: absolute; */
-        height: 24px;
-        /* float: right; */
-        position: absolute;
-        margin-left: 65%;
-        margin-top: 4px;
-        width: 32px;
-}
 
 input[type="date"]::-webkit-calendar-picker-indicator {
     color: rgba(54, 41, 41, 0);
@@ -23,4 +14,9 @@ input[type="date"]::-webkit-inner-spin-button{
 }
 .btn.btn-blue{
     color: white;
+}
+.add-store-block .d-flex.text-center.mb-4.justify-content-between.flex-wrap img {
+    
+    min-width: 100px!important;
+    
 }

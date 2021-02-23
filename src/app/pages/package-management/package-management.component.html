@@ -53,6 +53,10 @@
                             <span>No record found</span>
                         </tr>
                     </table>
+                    <div class="text-center" *ngIf="fetching">
+                        <i class="fa fa-spinner fa-spin" style="font-size:36px;color: blue;"></i>
+                         fetching...
+                        </div>
                 </div>
                 <div class="custom-pagination mt30 text-center">
                     <nav aria-label="Page navigation example">

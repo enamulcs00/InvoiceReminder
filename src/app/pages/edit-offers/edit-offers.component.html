@@ -8,21 +8,34 @@
             </div>
             <div class="order-view mt30 max-WT-600 mrgn-0-auto">
                 <div class="main-block-innner mb40 mt40">
+                    <div class="text-center" *ngIf="fetching">
+                        
+                            <i class="fa fa-spinner fa-spin" style="font-size:36px;color: blue;"></i>
+                         Offer_Updating...
+                        
+                    </div>
+                    <div *ngIf="IsUpdateOffer">
                     <div class="add-store-block input-style max-WT-400">
                       <div class="mb-4 text-right">
                                     <label class="mr-3">Add Photo : </label>
                                     <div class="file btn btn-upload btn-primary">
                                         Upload Image
-                                        <input type="file" name="image" accept="image/*"    formControlName="image" (change)="onSelectFile($event)" multiple/>
+                                        <input type="file" name="image" accept="image/*" formControlName="image" (change)="onSelectFile($event)" multiple/>
                                     </div>
                                     <div class="two-images">
-                                    <div class="d-flex text-center mb-4 justify-content-between flex-wrap" *ngFor="let data of urls">
-                               
-                                          <img src={{data}} style="max-width:200px;height:130px;margin:5px;">
-                                           <!--  <img src="../assets/img/dummy.png" style="max-width:200px;height:130px;margin:5px;"> -->
-                                             
+                                        <div class="row">
+                                        <div class="col-md-4" *ngFor="let data of urls; index as i">
+                                    <div class="d-flex text-center mb-4 justify-content-between flex-wrap">
+                                        <label for="fileInput" class="hoverable">
+                                          <img src={{data}} style="max-width:100px;height:75px;margin:5px;" (click)="removeImage(i)">
+                                          <div class="hover-text">click to delete                                            
+                                          </div>
+                                        </label>
+                                         </div>
+                                        </div>
+                                          
                                        </div>
-                                      </div>
+                                       </div>
                                   
                                 </div>
                         <div class="d-flex text-center mb-4 justify-content-between flex-wrap"
@@ -48,7 +61,7 @@
                             <div class="col-6">
                                 <label class="d-block pb-2">Start Date :</label>
                                 <div class="">
-                                    <input type="date" class="form-control " name="formdate"
+                                    <input type="date" class="form-control " name="formdate" [(ngModel)]="startdate" 
                                         formControlName="startdate" [value]="items[0]?.startDate | date:'yyyy-MM-dd'" (ngModelChange)="changed($event)" min="{{todayDate | date:'yyyy-MM-dd'}}">
                                 </div>
                                 <!-- {{items[0]?.startDate}} -->
@@ -56,7 +69,7 @@
                             <div class="col-6">
                                 <label class="d-block pb-2">End Date :</label>
                                 <div class="">
-                                    <input type="date" class="form-control" name="formdate"
+                                    <input type="date" class="form-control" name="formdate" min="{{startdate | date:'yyyy-MM-dd'}}"
                                         formControlName="enddate"  [value]="items[0]?.endDate | date:'yyyy-MM-dd'" (ngModelChange)="changed($event)" min="{{todayDate | date:'yyyy-MM-dd'}}">
                                 </div>
                                 <!-- {{items[0]?.endDate}} -->
@@ -69,6 +82,7 @@
                                 class="btn btn-large  max-WT-150 btn-red mr-2">Cancel </a>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
 

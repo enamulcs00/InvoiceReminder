@@ -11,6 +11,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class AddPromotionsComponent implements OnInit {
   addPromoForm: FormGroup;
   stardate:any;
+  fetching:boolean = false;
+  IsAddPromo:boolean = true;
   StartDateFirst:boolean = true;
   urls: any = [];
   hours: any;
@@ -80,6 +82,8 @@ export class AddPromotionsComponent implements OnInit {
 
 
   addPromo(){
+    this.fetching = true;
+    this.IsAddPromo = false;
     // this.image.push(this.imageSrc)
     console.log('second==>>','0'+this.seconds)
     if(this.seconds<10){

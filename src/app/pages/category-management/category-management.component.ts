@@ -12,6 +12,7 @@ declare var $: any;
 export class CategoryManagementComponent implements OnInit {
   pageNo: number = 1;
   searchkey: any;
+  fetching:boolean = false;
   user: any = [];
   paginationData: any;
   srNo: number = 0;
@@ -34,6 +35,7 @@ export class CategoryManagementComponent implements OnInit {
   }
 
   search(page) {
+    this.fetching = true;
     this.pageNo = page;
     let postData = {
       search: this.searchkey,
@@ -43,6 +45,7 @@ export class CategoryManagementComponent implements OnInit {
     this.service.postApi(`category/getCategory`, postData, 1).subscribe(response => {
       if (response['responseCode'] == 200) {
         this.user = response['result'];
+        this.fetching = false;
         this.arraydata = response['result']
         console.log('user=====>>>', this.user)
         this.paginationData = response['paginationData']

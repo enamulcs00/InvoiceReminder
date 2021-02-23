@@ -11,6 +11,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class PromotionEditComponent implements OnInit {
   editPromoForm: FormGroup;
   urls: any = [];
+  IsEditPromotion:boolean = false;
+  IsPromoForm:boolean = true;
   fromDate: Date;
   hours: any;
   minutes: any;
@@ -133,6 +135,9 @@ export class PromotionEditComponent implements OnInit {
 
 
   update() {
+    this.IsPromoForm = false;
+    this.IsEditPromotion = true;
+    
     // console.log("in updated form Data >>>>", this.editPromoForm.value, this.editPromoForm.value.startDate)
     if(!this.viewPromotion_id){
       var object = {
@@ -175,5 +180,7 @@ export class PromotionEditComponent implements OnInit {
     this.todayDate = new Date()
     }
     }
-
+    removeImage(i){
+      this.urls.splice(i, 1);
+     }
 }

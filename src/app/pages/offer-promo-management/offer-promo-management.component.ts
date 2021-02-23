@@ -13,6 +13,7 @@ declare var $: any;
 })
 export class OfferPromoManagementComponent implements OnInit {
   [x: string]: any;
+  fetching:boolean = false;
   totalPage:any;
   searchkey: any = '';
   pageNo: any = 1;
@@ -107,9 +108,11 @@ export class OfferPromoManagementComponent implements OnInit {
     } else if (this.activeTab == 'promotions') {
       url = 'promotion/getPromotion'
     }
+    this.fetching = true;
     this.service.postApi(url, object, 0).subscribe((data: any) => {
       if (data.responseCode === 200) {
         this.getofferdata = data.result;
+        this.fetching = false;
         console.log('this.getofferdata', this.getofferdata)
         if (data.result.length > 0) {
           this.paginationData = data.paginationData

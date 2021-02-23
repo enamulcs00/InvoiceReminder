@@ -11,9 +11,12 @@
                             <div class="mb-4 text-left">
                                 <label class="mr-3"> </label>
                             </div>
-                            <div class="d-flex text-center mb-4 justify-content-between flex-wrap" *ngFor="let data of getofferdata1">
-                                <img  src={{data}}  style="max-width: 200px;width: 100%;margin: 0px auto;text-align: center;">
-                               
+                            <div class="row">
+                                <div class="col-md-4" *ngFor="let data of getofferdata1">
+                            <div class="d-flex text-center mb-4 justify-content-between flex-wrap">
+                                <img  src={{data}}>
+                                </div>
+                                  </div>
                                 <!-- <img src="../assets/img/dummy.png" style="max-width:200px;height:130px;margin:5px;"> -->
                             </div>
                             <div class="form-group row">

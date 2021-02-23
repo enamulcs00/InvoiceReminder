@@ -11,8 +11,11 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class EditOffersComponent implements OnInit {
   editOfferForm:FormGroup;
   urls:any =[];
+  fetching:boolean = false;
+  IsUpdateOffer:boolean = true;
   user_id: string;
   fromDate: Date;
+  startdate:any;
   hours: any;
   minutes: any;
   seconds: any;
@@ -172,6 +175,8 @@ export class EditOffersComponent implements OnInit {
 
 
   update(){
+    this.fetching = true;
+    this.IsUpdateOffer =false;
     // console.log("in updated form Data >>>>",this.editOfferForm.value,this.editOfferForm.value.fullName)
      if(!this.viewOffer_id){
     var object ={
@@ -226,5 +231,7 @@ export class EditOffersComponent implements OnInit {
     }
     }
 
-
+    removeImage(i){
+      this.urls.splice(i, 1);
+    }
 }

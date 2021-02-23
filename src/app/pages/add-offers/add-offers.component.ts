@@ -11,9 +11,12 @@ declare var $;
 })
 export class AddOffersComponent implements OnInit {
   offerForm:FormGroup;
+  IsAddOffer:boolean = true;
+  fetching:boolean = false;
   private imageSrc: any = [];
   image:any =[];
   addoferdara: any;
+  
   addofferdata: any=[];
   srNo: number;
   calender: any = { todate: '', formdate: '' }
@@ -83,6 +86,9 @@ export class AddOffersComponent implements OnInit {
 
 
   addOffer(){
+    this.fetching = true;
+    this.IsAddOffer = false;
+    
     if(this.seconds<10){
       this.seconddata='0'+this.seconds
         console.log('this.seconddata1==>',this.seconddata)
@@ -126,6 +132,7 @@ export class AddOffersComponent implements OnInit {
                 } 
                 })
                 this.offerForm.reset();
+                
                 }
 
                 formdate() {

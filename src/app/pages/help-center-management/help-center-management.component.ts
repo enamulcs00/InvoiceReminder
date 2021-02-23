@@ -13,6 +13,7 @@ declare var kendo:any
 export class HelpCenterManagementComponent implements OnInit {
   searchkey: any;
   user: any;
+  fetching:boolean = false;
   paginationData: any;
   pageNo: number = 1;
   srNo: number;
@@ -40,6 +41,7 @@ export class HelpCenterManagementComponent implements OnInit {
 
 
   search(page) {
+    this.fetching = true;
     console.log(page)
     this.pageNo = page;
     let postData = {
@@ -52,6 +54,7 @@ export class HelpCenterManagementComponent implements OnInit {
       // console.log("to check userlist", JSON.stringify(response))
       if (response['responseCode'] == 200) {
         this.user = response;
+        this.fetching = false;
         this.paginationData = response['paginationData']
         this.srNo = (this.pageNo - 1) * this.paginationData.limit
         this.check();

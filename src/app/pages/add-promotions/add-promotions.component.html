@@ -7,7 +7,12 @@
         </div>
         <div class="order-view mt30 max-WT-600 mrgn-0-auto">
             <div class="main-block-innner mb40 mt40">
+                <div class="text-center" *ngIf="fetching">
+                    <i class="fa fa-spinner fa-spin" style="font-size:36px;color: blue;"></i>
+                     Promotion_Adding...
+                    </div>
                 <form [formGroup]="addPromoForm">
+                    <div *ngIf="IsAddPromo">
                     <div class="add-store-block input-style max-WT-400">
                             <div class="mb-4 text-right">
                                     <label class="mr-3">Add Photo : </label>
@@ -15,15 +20,18 @@
                                         Upload Image
                                         <input type="file" name="image" accept="image/*"    formControlName="image" (change)="onSelectFile($event)" multiple/>
                                     </div>
+                                    <hr>
                                     <div class="two-images">
-                                    <div class="d-flex text-center mb-4 justify-content-between flex-wrap" *ngFor="let data of urls">
+                                        <div class="row">
+                                            <div class="col-md-4" *ngFor="let data of urls">
+                                    <div class="d-flex text-center mb-4 justify-content-between flex-wrap">
                                
-                                          <img src={{data}} style="max-width:200px;height:130px;margin:5px;">
-                                           <!--  <img src="../assets/img/dummy.png" style="max-width:200px;height:130px;margin:5px;"> -->
-                                             
+                                          <img src={{data}}>
+
+                                        </div>
+                                          </div>   
                                        </div>
                                       </div>
-                                  
                                 </div>
                         <div class="form-group row">
                             <div class="col-6">
@@ -47,6 +55,7 @@
                             <a class="btn btn-large  max-WT-150 btn-green mr-2" (click)="backBtn()">Back </a>
                         </div>
                     </div>
+                </div>
                 </form>
             </div>
         </div>
